@@ -136,7 +136,7 @@
             </div>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Team</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed">I am Dr. Natasha Mae Benitez, the Program Manager of Communicable Diseases. Ms. Caroline De Guzman is the AIDS nurse coordinator. We are headed by Ramjay Perci Novilla, the administrative officer of the City Health Office, and Dr. Susan Benitez, the City Health Officer II.</p>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">Dr. Natasha Mae Benitez, Program Manager of Communicable Diseases and Chief of Health Informatics, leads innovative programs for diseases like tuberculosis, HIV/AIDS, STIs, leprosy, and WASH, while advancing data-driven healthcare and health equity. Ms. Caroline De Guzman, AIDS Nurse Coordinator, brings over 10 years as an HIV counselor and LGBTQ advocate. Ramjay Perci Novilla, Administrative Officer II, promotes innovation and inclusive leadership. Dr. Susan Benitez, City Health Officer II, oversees all health services with decades of rural experience, ensuring efficient delivery and community health awareness.</p>
             </div>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Values</h3>
@@ -328,32 +328,27 @@
 
             if (!isValid) return;
 
-            // Simulate API call
-            fetch('https://api.example.com/appointments', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, contact, reason })
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('Submission failed');
-                return response.json();
-            })
-            .then(() => {
-                messageDiv.textContent = 'Thank you for your appointment request! We will contact you shortly.';
-                messageDiv.classList.remove('hidden', 'text-red-500');
-                messageDiv.classList.add('text-green-600');
-                event.target.reset();
+            // Simulate local submission with a delay
+            messageDiv.classList.remove('hidden');
+            messageDiv.textContent = 'Processing your request...';
+            setTimeout(() => {
+                // Simulate success (randomly 80% chance of success for testing)
+                const isSuccess = Math.random() > 0.2;
+                if (isSuccess) {
+                    messageDiv.textContent = 'Thank you for your appointment request! We will contact you shortly.';
+                    messageDiv.classList.remove('text-red-500');
+                    messageDiv.classList.add('text-green-600');
+                    event.target.reset();
+                } else {
+                    messageDiv.textContent = 'An error occurred. Please try again later.';
+                    messageDiv.classList.remove('text-green-600');
+                    messageDiv.classList.add('text-red-500');
+                }
                 setTimeout(() => {
                     messageDiv.classList.add('hidden');
-                    messageDiv.classList.remove('text-green-600');
+                    messageDiv.classList.remove('text-green-600', 'text-red-500');
                 }, 5000);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                messageDiv.textContent = 'An error occurred. Please try again later.';
-                messageDiv.classList.remove('hidden', 'text-green-600');
-                messageDiv.classList.add('text-red-500');
-            });
+            }, 1000); // 1-second delay to simulate processing
         }
 
         // Initialize
