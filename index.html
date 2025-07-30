@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Carlos City CHO - Social Hygiene Unit</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dc2626; /* Red-600 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b91c1c; /* Red-700 */
+        }
+        /* Ensure content fills height for better layout */
+        html, body {
+            min-height: 100%;
+        }
+        #content-area {
+            min-height: calc(100vh - 128px); /* Full viewport height minus header and footer */
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-red-600 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold mb-2 md:mb-0 flex items-center">
+                <!-- Pride Flag / Rainbow Icon (SVG embedded directly) -->
+                <svg class="h-12 w-auto mr-3" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="300" height="33.33" fill="#E40303"/>
+                    <rect x="0" y="33.33" width="300" height="33.33" fill="#FF8C00"/>
+                    <rect x="0" y="66.66" width="300" height="33.33" fill="#FFED00"/>
+                    <rect x="0" y="99.99" width="300" height="33.33" fill="#008026"/>
+                    <rect x="0" y="133.32" width="300" height="33.33" fill="#004DFF"/>
+                    <rect x="0" y="166.65" width="300" height="33.33" fill="#750787"/>
+                </svg>
+                <a href="#" onclick="showSection('home')" class="hover:text-red-200 transition duration-300">San Carlos City CHO</a>
+            </h1>
+            <nav>
+                <ul class="flex flex-wrap justify-center space-x-4 md:space-x-6 text-lg">
+                    <li><a href="#" onclick="showSection('about')" class="hover:text-red-200 transition duration-300">About Us</a></li>
+                    <li><a href="#" onclick="showSection('initiatives')" class="hover:text-red-200 transition duration-300">Initiatives</a></li>
+                    <li><a href="#" onclick="showSection('dashboard')" class="hover:text-red-200 transition duration-300">Dashboard</a></li>
+                    <li><a href="#" onclick="showSection('appointments')" class="hover:text-red-200 transition duration-300">Appointments & Contact</a></li>
+                    <li><a href="#" onclick="showSection('directory')" class="hover:text-red-200 transition duration-300">Treatment Hubs</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="content-area" class="flex-grow container mx-auto p-6 bg-white shadow-lg rounded-lg my-8 transition-all duration-300 ease-in-out">
+
+        <!-- Home Section -->
+        <section id="home" class="active-section">
+            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Welcome to San Carlos City Social Hygiene Unit</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        We are dedicated to promoting health, preventing the spread of sexually transmitted infections (STIs), including HIV/AIDS, and providing compassionate support to our community. Our commitment is to foster a stigma-free environment where everyone feels empowered to seek information, testing, and care.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Explore our website to learn more about our vision, mission, ongoing initiatives, and how you can access vital services. Together, we can build a healthier and more informed San Carlos City.
+                    </p>
+                    <button onclick="showSection('about')" class="mt-6 px-8 py-3 bg-red-500 text-white text-xl font-semibold rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+                        Learn More About Us
+                    </button>
+                </div>
+                <div class="flex justify-center p-4">
+                    <!-- Welcome Sign -->
+                    <div class="text-center p-8 bg-blue-100 rounded-lg shadow-xl border-4 border-blue-300">
+                        <p class="text-5xl md:text-6xl font-extrabold text-blue-800 leading-tight">
+                            Welcome, <br class="md:hidden"> Kabaleyan!
+                        </p>
+                        <p class="text-lg text-blue-600 mt-2">
+                            Your health, our priority.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="hidden">
+            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">About Us</h2>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-6">
+                <h3 class="text-3xl font-semibold text-red-700 mb-4">Our Vision</h3>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    A healthy and empowered San Carlos City where every individual has access to comprehensive social hygiene services, fostering a community free from the burden of STIs and HIV/AIDS.
+                </p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-6">
+                <h3 class="text-3xl font-semibold text-red-700 mb-4">Our Mission</h3>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    To deliver accessible, confidential, and high-quality social hygiene services, including prevention, testing, treatment, and counseling, through dedicated healthcare professionals and community partnerships, ensuring the well-being of all San Carlos City residents.
+                </p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                <h3 class="text-3xl font-semibold text-red-700 mb-4">Our Values</h3>
+                <ul class="list-disc list-inside text-gray-700 text-lg leading-relaxed space-y-2">
+                    <li><strong>Compassion:</strong> Providing care with empathy and understanding.</li>
+                    <li><strong>Confidentiality:</strong> Ensuring privacy and trust in all interactions.</li>
+                    <li><strong>Integrity:</strong> Upholding the highest ethical standards.</li>
+                    <li><strong>Accessibility:</strong> Making services available to everyone, regardless of background.</li>
+                    <li><strong>Empowerment:</strong> Educating and enabling individuals to make informed health decisions.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Initiatives Section -->
+        <section id="initiatives" class="hidden">
+            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Our Initiatives</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Initiative Card 1 -->
+                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Community Outreach Programs</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Regular outreach activities in various barangays to raise awareness about STI/HIV prevention, safe sexual practices, and the importance of early testing. We distribute educational materials and condoms.
+                    </p>
+                </div>
+                <!-- Initiative Card 2 -->
+                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Free HIV/STI Testing</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Confidential and free testing services for HIV and other STIs are available at our clinic. Early detection is key to effective treatment and preventing further transmission.
+                    </p>
+                </div>
+                <!-- Initiative Card 3 -->
+                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Counseling and Support Services</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        We offer pre- and post-test counseling, as well as ongoing psychological and social support for individuals living with HIV/AIDS and their families.
+                    </p>
+                </div>
+                <!-- Initiative Card 4 -->
+                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Educational Campaigns in Schools</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Collaborating with local schools to provide age-appropriate education on reproductive health, STI/HIV prevention, and responsible decision-making to young people.
+                    </p>
+                </div>
+                <!-- Initiative Card 5 -->
+                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Partnerships with NGOs</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Working closely with non-governmental organizations and other health agencies to expand our reach and enhance the quality of our services.
+                    </p>
+                </div>
+                <!-- Initiative Card 6 -->
+                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Treatment Adherence Support</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Assisting clients in adhering to their treatment regimens for STIs and HIV, including providing reminders and addressing barriers to consistent medication intake.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="hidden">
+            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Dashboard (Coming Soon!)</h2>
+            <div class="bg-blue-50 p-6 rounded-lg shadow-md text-center">
+                <p class="text-gray-700 text-lg mb-4">
+                    We are currently working on a comprehensive dashboard to provide transparent data and insights into our public health efforts related to social hygiene.
+                </p>
+                <p class="text-gray-700 text-lg">
+                    This will include statistics on testing, cases, and the impact of our programs. Please check back soon for updates!
+                </p>
+                <div class="mt-6 flex justify-center">
+                    <!-- Placeholder for a simple chart icon or loading animation -->
+                    <svg class="w-24 h-24 text-blue-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Appointments & Contact Section -->
+        <section id="appointments" class="hidden">
+            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Appointments & Contact Us</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Contact Information -->
+                <div class="bg-green-50 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-4">Get in Touch</h3>
+                    <p class="text-gray-700 text-lg mb-2"><strong>Address:</strong> San Carlos City Health Office, [Your Street Address], San Carlos City, Negros Occidental</p>
+                    <p class="text-gray-700 text-lg mb-2"><strong>Phone:</strong> (034) XXX-XXXX</p>
+                    <p class="text-gray-700 text-lg mb-2"><strong>Email:</strong> socialhygiene.scc@email.com</p>
+                    <p class="text-gray-700 text-lg"><strong>Operating Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
+                    <div class="mt-4">
+                        <a href="mailto:socialhygiene.scc@email.com" class="inline-block bg-green-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-green-700 transition duration-300">Send us an Email</a>
+                    </div>
+                </div>
+                <!-- Appointment Form (Simplified) -->
+                <div class="bg-yellow-50 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold text-yellow-700 mb-4">Request an Appointment</h3>
+                    <p class="text-gray-700 mb-4">
+                        Please fill out the form below to request an appointment for testing or counseling. We will contact you to confirm the details.
+                    </p>
+                    <form onsubmit="submitAppointmentForm(event)">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                            <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contact" class="block text-gray-700 text-sm font-bold mb-2">Contact Number/Email:</label>
+                            <input type="text" id="contact" name="contact" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="reason" class="block text-gray-700 text-sm font-bold mb-2">Reason for Appointment:</label>
+                            <textarea id="reason" name="reason" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
+                        </div>
+                        <button type="submit" class="bg-yellow-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-yellow-700 transition duration-300">Submit Request</button>
+                    </form>
+                    <div id="appointment-message" class="mt-4 text-center text-lg font-semibold hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Treatment Hubs Directory Section -->
+        <section id="directory" class="hidden">
+            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Treatment Hubs & Partner Facilities</h2>
+            <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                Below is a list of accredited treatment hubs and partner facilities in and around San Carlos City where you can access further care and support.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Hub Card 1 -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">San Carlos City Hospital</h3>
+                    <p class="text-gray-700 mb-2"><strong>Services:</strong> STI/HIV Diagnosis, Treatment, ARV dispensing</p>
+                    <p class="text-gray-700 mb-2"><strong>Address:</strong> Hospital Road, San Carlos City</p>
+                    <p class="text-gray-700"><strong>Contact:</strong> (034) XXX-XXXX</p>
+                </div>
+                <!-- Hub Card 2 -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Provincial Health Office - Negros Occidental</h3>
+                    <p class="text-gray-700 mb-2"><strong>Services:</strong> Policy, Surveillance, Training</p>
+                    <p class="text-gray-700 mb-2"><strong>Address:</strong> Bacolod City, Negros Occidental</p>
+                    <p class="text-gray-700"><strong>Contact:</strong> (034) XXX-XXXX</p>
+                </div>
+                <!-- Hub Card 3 -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Private Clinic A (Partner)</h3>
+                    <p class="text-gray-700 mb-2"><strong>Services:</strong> Confidential Testing, Counseling</p>
+                    <p class="text-gray-700 mb-2"><strong>Address:</strong> [Address of Clinic A]</p>
+                    <p class="text-gray-700"><strong>Contact:</strong> (034) XXX-XXXX</p>
+                </div>
+                <!-- Add more hubs as needed -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4 text-center shadow-inner mt-8">
+        <div class="container mx-auto">
+            <p>&copy; 2025 San Carlos City CHO - Social Hygiene Unit. All rights reserved.</p>
+            <p class="text-sm mt-2">Promoting Health, Preventing STIs, Supporting Lives.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to show/hide sections
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('main section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('active-section'); // Remove active class from all
+            });
+
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.remove('hidden');
+                activeSection.classList.add('active-section'); // Add active class to current
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+            }
+        }
+
+        // Handle appointment form submission
+        function submitAppointmentForm(event) {
+            event.preventDefault(); // Prevent default form submission
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('contact').value;
+            const reason = document.getElementById('reason').value;
+            const messageDiv = document.getElementById('appointment-message');
+
+            // Simulate form submission (in a real app, this would send data to a server)
+            console.log('Appointment Request:', { name, contact, reason });
+
+            messageDiv.textContent = 'Thank you for your appointment request! We will contact you shortly.';
+            messageDiv.classList.remove('hidden');
+            messageDiv.classList.add('text-green-600'); // Style success message
+
+            // Clear the form
+            event.target.reset();
+
+            // Hide message after a few seconds
+            setTimeout(() => {
+                messageDiv.classList.add('hidden');
+                messageDiv.classList.remove('text-green-600');
+            }, 5000);
+        }
+
+        // Initialize the home section to be visible on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
