@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="San Carlos City Social Hygiene Unit provides health services, STI/HIV prevention, testing, and support for the community.">
+    <meta name="keywords" content="San Carlos City, Social Hygiene, STI, HIV, health services, testing, counseling">
+    <meta property="og:title" content="San Carlos City CHO - Social Hygiene Unit">
+    <meta property="og:description" content="Promoting health and preventing STIs in San Carlos City through compassionate care and education.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com">
+    <meta property="og:image" content="https://example.com/logo.png">
     <title>San Carlos City CHO - Social Hygiene Unit</title>
-    <!-- Tailwind CSS CDN for easy styling -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!-- Preload Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            background-color: #f0f4f8;
         }
-        /* Custom scrollbar for better aesthetics */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -22,18 +32,43 @@
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #dc2626; /* Red-600 */
+            background: #dc2626;
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #b91c1c; /* Red-700 */
+            background: #b91c1c;
         }
-        /* Ensure content fills height for better layout */
         html, body {
-            min-height: 100%;
+            min-height: 100vh;
         }
         #content-area {
-            min-height: calc(100vh - 128px); /* Full viewport height minus header and footer */
+            min-height: calc(100vh - 128px);
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .hidden {
+            display: none;
+            opacity: 0;
+        }
+        .active-section {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .nav-link.active {
+            border-bottom: 2px solid white;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1f2937;
+                color: #f3f4f6;
+            }
+            #content-area {
+                background-color: #374151;
+            }
         }
     </style>
 </head>
@@ -41,9 +76,8 @@
     <!-- Header -->
     <header class="bg-red-600 text-white p-4 shadow-lg">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-bold mb-2 md:mb-0 flex items-center">
-                <!-- Pride Flag / Rainbow Icon (SVG embedded directly) -->
-                <svg class="h-12 w-auto mr-3" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <h1 class="text-2xl md:text-3xl font-bold mb-2 md:mb-0 flex items-center">
+                <svg class="h-10 w-auto mr-3" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Pride Flag Logo">
                     <rect x="0" y="0" width="300" height="33.33" fill="#E40303"/>
                     <rect x="0" y="33.33" width="300" height="33.33" fill="#FF8C00"/>
                     <rect x="0" y="66.66" width="300" height="33.33" fill="#FFED00"/>
@@ -53,45 +87,37 @@
                 </svg>
                 <a href="#" onclick="showSection('home')" class="hover:text-red-200 transition duration-300">San Carlos City CHO</a>
             </h1>
-            <nav>
-                <ul class="flex flex-wrap justify-center space-x-4 md:space-x-6 text-lg">
-                    <li><a href="#" onclick="showSection('about')" class="hover:text-red-200 transition duration-300">About Us</a></li>
-                    <li><a href="#" onclick="showSection('initiatives')" class="hover:text-red-200 transition duration-300">Initiatives</a></li>
-                    <li><a href="#" onclick="showSection('dashboard')" class="hover:text-red-200 transition duration-300">Dashboard</a></li>
-                    <li><a href="#" onclick="showSection('appointments')" class="hover:text-red-200 transition duration-300">Appointments & Contact</a></li>
-                    <li><a href="#" onclick="showSection('directory')" class="hover:text-red-200 transition duration-300">Treatment Hubs</a></li>
+            <nav aria-label="Main navigation">
+                <ul class="flex flex-wrap justify-center space-x-4 md:space-x-6 text-base md:text-lg">
+                    <li><a href="#" onclick="showSection('about')" class="nav-link hover:text-red-200 transition duration-300">About Us</a></li>
+                    <li><a href="#" onclick="showSection('initiatives')" class="nav-link hover:text-red-200 transition duration-300">Initiatives</a></li>
+                    <li><a href="#" onclick="showSection('dashboard')" class="nav-link hover:text-red-200 transition duration-300">Dashboard</a></li>
+                    <li><a href="#" onclick="showSection('appointments')" class="nav-link hover:text-red-200 transition duration-300">Appointments & Contact</a></li>
+                    <li><a href="#" onclick="showSection('directory')" class="nav-link hover:text-red-200 transition duration-300">Treatment Hubs</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Main Content Area -->
-    <main id="content-area" class="flex-grow container mx-auto p-6 bg-white shadow-lg rounded-lg my-8 transition-all duration-300 ease-in-out">
-
+    <main id="content-area" class="flex-grow container mx-auto p-4 md:p-6 bg-white shadow-lg rounded-lg my-6 md:my-8 transition-all duration-300 ease-in-out" aria-live="polite">
         <!-- Home Section -->
         <section id="home" class="active-section">
-            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Welcome to San Carlos City Social Hygiene Unit</h2>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Welcome to San Carlos City Social Hygiene Unit</h2>
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
                 <div>
-                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                    <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
                         We are dedicated to promoting health, preventing the spread of sexually transmitted infections (STIs), including HIV/AIDS, and providing compassionate support to our community. Our commitment is to foster a stigma-free environment where everyone feels empowered to seek information, testing, and care.
                     </p>
-                    <p class="text-gray-700 text-lg leading-relaxed">
+                    <p class="text-gray-700 text-base md:text-lg leading-relaxed">
                         Explore our website to learn more about our vision, mission, ongoing initiatives, and how you can access vital services. Together, we can build a healthier and more informed San Carlos City.
                     </p>
-                    <button onclick="showSection('about')" class="mt-6 px-8 py-3 bg-red-500 text-white text-xl font-semibold rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                        Learn More About Us
-                    </button>
+                    <button onclick="showSection('about')" class="mt-6 px-6 py-3 bg-red-500 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400">Learn More About Us</button>
                 </div>
                 <div class="flex justify-center p-4">
-                    <!-- Welcome Sign -->
-                    <div class="text-center p-8 bg-blue-100 rounded-lg shadow-xl border-4 border-blue-300">
-                        <p class="text-5xl md:text-6xl font-extrabold text-blue-800 leading-tight">
-                            Welcome, <br class="md:hidden"> Kabaleyan!
-                        </p>
-                        <p class="text-lg text-blue-600 mt-2">
-                            Your health, our priority.
-                        </p>
+                    <div class="text-center p-6 md:p-8 bg-blue-100 rounded-lg shadow-xl border-4 border-blue-300">
+                        <p class="text-4xl md:text-6xl font-extrabold text-blue-800 leading-tight">Welcome, <br class="md:hidden"> Kabaleyan!</p>
+                        <p class="text-base md:text-lg text-blue-600 mt-2">Your health, our priority.</p>
                     </div>
                 </div>
             </div>
@@ -99,22 +125,22 @@
 
         <!-- About Us Section -->
         <section id="about" class="hidden">
-            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">About Us</h2>
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-6">
-                <h3 class="text-3xl font-semibold text-red-700 mb-4">Our Vision</h3>
-                <p class="text-gray-700 text-lg leading-relaxed">
-                    A healthy and empowered San Carlos City where every individual has access to comprehensive social hygiene services, fostering a community free from the burden of STIs and HIV/AIDS.
-                </p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">About Us</h2>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
+                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Vision</h3>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">A healthy and empowered San Carlos City where every individual has access to comprehensive social hygiene services, fostering a community free from the burden of STIs and HIV/AIDS.</p>
             </div>
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-6">
-                <h3 class="text-3xl font-semibold text-red-700 mb-4">Our Mission</h3>
-                <p class="text-gray-700 text-lg leading-relaxed">
-                    To deliver accessible, confidential, and high-quality social hygiene services, including prevention, testing, treatment, and counseling, through dedicated healthcare professionals and community partnerships, ensuring the well-being of all San Carlos City residents.
-                </p>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
+                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Mission</h3>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">To deliver accessible, confidential, and high-quality social hygiene services, including prevention, testing, treatment, and counseling, through dedicated healthcare professionals and community partnerships, ensuring the well-being of all San Carlos City residents.</p>
             </div>
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                <h3 class="text-3xl font-semibold text-red-700 mb-4">Our Values</h3>
-                <ul class="list-disc list-inside text-gray-700 text-lg leading-relaxed space-y-2">
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
+                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Team</h3>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">I am Dr. Natasha Mae Benitez, the Program Manager of Communicable Diseases. Ms. Caroline De Guzman is the AIDS nurse coordinator. We are headed by Ramjay Perci Novilla, the administrative officer of the City Health Office, and Dr. Susan Benitez, the City Health Officer II.</p>
+            </div>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Values</h3>
+                <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2">
                     <li><strong>Compassion:</strong> Providing care with empathy and understanding.</li>
                     <li><strong>Confidentiality:</strong> Ensuring privacy and trust in all interactions.</li>
                     <li><strong>Integrity:</strong> Upholding the highest ethical standards.</li>
@@ -126,66 +152,39 @@
 
         <!-- Initiatives Section -->
         <section id="initiatives" class="hidden">
-            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Our Initiatives</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Initiative Card 1 -->
-                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Community Outreach Programs</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Regular outreach activities in various barangays to raise awareness about STI/HIV prevention, safe sexual practices, and the importance of early testing. We distribute educational materials and condoms.
-                    </p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Our Initiatives</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">Proud and Positive Campaign (2024-Present)</h3>
+                    <p class="text-gray-700 text-base leading-relaxed">Pioneered the first Pride Parade along the Minor Basilica’s pathway, with a ribbon formation, candle lighting, and an HIV speaker, reducing stigma. Led a color fun run, artistic competitions, and an HIV video with 7.9M views, growing our online platform to 35,000 followers and increasing HIV screenings from 456 in 2024 to 353 in Q1 2025.</p>
                 </div>
-                <!-- Initiative Card 2 -->
-                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Free HIV/STI Testing</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Confidential and free testing services for HIV and other STIs are available at our clinic. Early detection is key to effective treatment and preventing further transmission.
-                    </p>
+                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">Lakbay Kalusugan (launched July 2)</h3>
+                    <p class="text-gray-700 text-base leading-relaxed">Ongoing free HIV and mental health education and screenings in barangays and schools (78 screened so far).</p>
                 </div>
-                <!-- Initiative Card 3 -->
-                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Counseling and Support Services</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        We offer pre- and post-test counseling, as well as ongoing psychological and social support for individuals living with HIV/AIDS and their families.
-                    </p>
+                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">Pride Parade and HOPE Ambassadors (August)</h3>
+                    <p class="text-gray-700 text-base leading-relaxed">Crowning youth pairs as HIV advocates in a public awareness campaign.</p>
                 </div>
-                <!-- Initiative Card 4 -->
-                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Educational Campaigns in Schools</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Collaborating with local schools to provide age-appropriate education on reproductive health, STI/HIV prevention, and responsible decision-making to young people.
-                    </p>
+                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">PHAISEZ (September)</h3>
+                    <p class="text-gray-700 text-base leading-relaxed">A self-esteem and alternative livelihood initiative for women in the sex industry, offering free manicure/pedicure services and health talks.</p>
                 </div>
-                <!-- Initiative Card 5 -->
-                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Partnerships with NGOs</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Working closely with non-governmental organizations and other health agencies to expand our reach and enhance the quality of our services.
-                    </p>
-                </div>
-                <!-- Initiative Card 6 -->
-                <div class="bg-red-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Treatment Adherence Support</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Assisting clients in adhering to their treatment regimens for STIs and HIV, including providing reminders and addressing barriers to consistent medication intake.
-                    </p>
+                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">Parol ng Pag-asa (December)</h3>
+                    <p class="text-gray-700 text-base leading-relaxed">A World AIDS Day community lantern-making event to reduce stigma and increase awareness.</p>
                 </div>
             </div>
         </section>
 
         <!-- Dashboard Section -->
         <section id="dashboard" class="hidden">
-            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Dashboard (Coming Soon!)</h2>
-            <div class="bg-blue-50 p-6 rounded-lg shadow-md text-center">
-                <p class="text-gray-700 text-lg mb-4">
-                    We are currently working on a comprehensive dashboard to provide transparent data and insights into our public health efforts related to social hygiene.
-                </p>
-                <p class="text-gray-700 text-lg">
-                    This will include statistics on testing, cases, and the impact of our programs. Please check back soon for updates!
-                </p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Dashboard (Coming Soon!)</h2>
+            <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md text-center">
+                <p class="text-gray-700 text-base md:text-lg mb-4">We are currently working on a comprehensive dashboard to provide transparent data and insights into our public health efforts related to social hygiene.</p>
+                <p class="text-gray-700 text-base md:text-lg">This will include statistics on testing, cases, and the impact of our programs. Please check back soon for updates!</p>
                 <div class="mt-6 flex justify-center">
-                    <!-- Placeholder for a simple chart icon or loading animation -->
-                    <svg class="w-24 h-24 text-blue-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-20 md:w-24 h-20 md:h-24 text-blue-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                     </svg>
@@ -195,81 +194,67 @@
 
         <!-- Appointments & Contact Section -->
         <section id="appointments" class="hidden">
-            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Appointments & Contact Us</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Contact Information -->
-                <div class="bg-green-50 p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-semibold text-green-700 mb-4">Get in Touch</h3>
-                    <p class="text-gray-700 text-lg mb-2"><strong>Address:</strong> San Carlos City Health Office, [Your Street Address], San Carlos City, Negros Occidental</p>
-                    <p class="text-gray-700 text-lg mb-2"><strong>Phone:</strong> (034) XXX-XXXX</p>
-                    <p class="text-gray-700 text-lg mb-2"><strong>Email:</strong> socialhygiene.scc@email.com</p>
-                    <p class="text-gray-700 text-lg"><strong>Operating Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Appointments & Contact Us</h2>
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                <div class="bg-green-50 p-4 md:p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl md:text-2xl font-semibold text-green-700 mb-4">Get in Touch</h3>
+                    <p class="text-gray-700 text-base md:text-lg mb-2"><strong>Address:</strong> San Carlos City Health Office, Palaris Street, San Carlos City, Pangasinan</p>
+                    <p class="text-gray-700 text-base md:text-lg mb-2"><strong>Phone:</strong> 09776278954</p>
+                    <p class="text-gray-700 text-base md:text-lg mb-2"><strong>Email:</strong> chosccpsocialhygiene@gmail.com</p>
+                    <p class="text-gray-700 text-base md:text-lg"><strong>Operating Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
                     <div class="mt-4">
-                        <a href="mailto:socialhygiene.scc@email.com" class="inline-block bg-green-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-green-700 transition duration-300">Send us an Email</a>
+                        <a href="mailto:chosccpsocialhygiene@gmail.com" class="inline-block bg-green-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400">Send us an Email</a>
                     </div>
                 </div>
-                <!-- Appointment Form (Simplified) -->
-                <div class="bg-yellow-50 p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-semibold text-yellow-700 mb-4">Request an Appointment</h3>
-                    <p class="text-gray-700 mb-4">
-                        Please fill out the form below to request an appointment for testing or counseling. We will contact you to confirm the details.
-                    </p>
-                    <form onsubmit="submitAppointmentForm(event)">
+                <div class="bg-yellow-50 p-4 md:p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl md:text-2xl font-semibold text-yellow-700 mb-4">Request an Appointment</h3>
+                    <p class="text-gray-700 text-base mb-4">Please fill out the form below to request an appointment for testing or counseling. We will contact you to confirm the details.</p>
+                    <form onsubmit="submitAppointmentForm(event)" novalidate>
                         <div class="mb-4">
                             <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                            <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                            <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-yellow-400" required aria-describedby="name-error">
+                            <p id="name-error" class="text-red-500 text-sm hidden">Please enter your name.</p>
                         </div>
                         <div class="mb-4">
                             <label for="contact" class="block text-gray-700 text-sm font-bold mb-2">Contact Number/Email:</label>
-                            <input type="text" id="contact" name="contact" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                            <input type="text" id="contact" name="contact" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-yellow-400" required aria-describedby="contact-error">
+                            <p id="contact-error" class="text-red-500 text-sm hidden">Please enter a valid email or phone number.</p>
                         </div>
                         <div class="mb-6">
                             <label for="reason" class="block text-gray-700 text-sm font-bold mb-2">Reason for Appointment:</label>
-                            <textarea id="reason" name="reason" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
+                            <textarea id="reason" name="reason" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-yellow-400" required aria-describedby="reason-error"></textarea>
+                            <p id="reason-error" class="text-red-500 text-sm hidden">Please provide a reason for your appointment.</p>
                         </div>
-                        <button type="submit" class="bg-yellow-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-yellow-700 transition duration-300">Submit Request</button>
+                        <button type="submit" class="bg-yellow-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-yellow-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400">Submit Request</button>
                     </form>
-                    <div id="appointment-message" class="mt-4 text-center text-lg font-semibold hidden"></div>
+                    <div id="appointment-message" class="mt-4 text-center text-base md:text-lg font-semibold hidden" role="alert"></div>
                 </div>
             </div>
         </section>
 
         <!-- Treatment Hubs Directory Section -->
         <section id="directory" class="hidden">
-            <h2 class="text-4xl font-extrabold text-red-800 mb-6 text-center">Treatment Hubs & Partner Facilities</h2>
-            <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                Below is a list of accredited treatment hubs and partner facilities in and around San Carlos City where you can access further care and support.
-            </p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Hub Card 1 -->
-                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">San Carlos City Hospital</h3>
-                    <p class="text-gray-700 mb-2"><strong>Services:</strong> STI/HIV Diagnosis, Treatment, ARV dispensing</p>
-                    <p class="text-gray-700 mb-2"><strong>Address:</strong> Hospital Road, San Carlos City</p>
-                    <p class="text-gray-700"><strong>Contact:</strong> (034) XXX-XXXX</p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Treatment Hubs & Partner Facilities</h2>
+            <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">Below is a list of accredited treatment hubs and partner facilities in and around San Carlos City where you can access further care and support.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-3">Ilocos Training and Regional Medical Center</h3>
+                    <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient and Inpatient Services</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>Address:</strong> Parian, San Fernando City, La Union</p>
+                    <p class="text-gray-700 text-base"><strong>Contact:</strong> (072) 607-6418 / (072) 607-9912</p>
                 </div>
-                <!-- Hub Card 2 -->
-                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Provincial Health Office - Negros Occidental</h3>
-                    <p class="text-gray-700 mb-2"><strong>Services:</strong> Policy, Surveillance, Training</p>
-                    <p class="text-gray-700 mb-2"><strong>Address:</strong> Bacolod City, Negros Occidental</p>
-                    <p class="text-gray-700"><strong>Contact:</strong> (034) XXX-XXXX</p>
+                <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-3">Region 1 Medical Center</h3>
+                    <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient and Inpatient Services</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>Address:</strong> Dagupan City Hall, AB Fernandez Avenue, Downtown District</p>
+                    <p class="text-gray-700 text-base"><strong>Contact:</strong> HACT Chair: Dr. Michiko Manaois 0915-9063375</p>
                 </div>
-                <!-- Hub Card 3 -->
-                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Private Clinic A (Partner)</h3>
-                    <p class="text-gray-700 mb-2"><strong>Services:</strong> Confidential Testing, Counseling</p>
-                    <p class="text-gray-700 mb-2"><strong>Address:</strong> [Address of Clinic A]</p>
-                    <p class="text-gray-700"><strong>Contact:</strong> (034) XXX-XXXX</p>
-                </div>
-                <!-- Add more hubs as needed -->
             </div>
         </section>
-
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white p-4 text-center shadow-inner mt-8">
+    <footer class="bg-gray-800 text-white p-4 text-center shadow-inner mt-6 md:mt-8">
         <div class="container mx-auto">
             <p>&copy; 2025 San Carlos City CHO - Social Hygiene Unit. All rights reserved.</p>
             <p class="text-sm mt-2">Promoting Health, Preventing STIs, Supporting Lives.</p>
@@ -277,48 +262,101 @@
     </footer>
 
     <script>
-        // Function to show/hide sections
+        // Ideally, move this to an external file (e.g., scripts.js)
         function showSection(sectionId) {
             const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Update sections
             sections.forEach(section => {
                 section.classList.add('hidden');
-                section.classList.remove('active-section'); // Remove active class from all
+                section.classList.remove('active-section');
+                section.setAttribute('aria-hidden', 'true');
             });
 
             const activeSection = document.getElementById(sectionId);
             if (activeSection) {
                 activeSection.classList.remove('hidden');
-                activeSection.classList.add('active-section'); // Add active class to current
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+                activeSection.classList.add('active-section');
+                activeSection.setAttribute('aria-hidden', 'false');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                activeSection.querySelector('h2').focus({ preventScroll: true });
             }
+
+            // Update active navigation link
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.nav-link[onclick="showSection('${sectionId}')"]`);
+            if (activeLink) activeLink.classList.add('active');
         }
 
-        // Handle appointment form submission
+        function validateEmailOrPhone(input) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^\+?\d{10,15}$/;
+            return emailRegex.test(input) || phoneRegex.test(input);
+        }
+
         function submitAppointmentForm(event) {
-            event.preventDefault(); // Prevent default form submission
-            const name = document.getElementById('name').value;
-            const contact = document.getElementById('contact').value;
-            const reason = document.getElementById('reason').value;
+            event.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const contact = document.getElementById('contact').value.trim();
+            const reason = document.getElementById('reason').value.trim();
             const messageDiv = document.getElementById('appointment-message');
+            const nameError = document.getElementById('name-error');
+            const contactError = document.getElementById('contact-error');
+            const reasonError = document.getElementById('reason-error');
 
-            // Simulate form submission (in a real app, this would send data to a server)
-            console.log('Appointment Request:', { name, contact, reason });
+            // Reset errors
+            nameError.classList.add('hidden');
+            contactError.classList.add('hidden');
+            reasonError.classList.add('hidden');
+            messageDiv.classList.add('hidden');
 
-            messageDiv.textContent = 'Thank you for your appointment request! We will contact you shortly.';
-            messageDiv.classList.remove('hidden');
-            messageDiv.classList.add('text-green-600'); // Style success message
+            let isValid = true;
 
-            // Clear the form
-            event.target.reset();
+            if (!name) {
+                nameError.classList.remove('hidden');
+                isValid = false;
+            }
+            if (!contact || !validateEmailOrPhone(contact)) {
+                contactError.classList.remove('hidden');
+                isValid = false;
+            }
+            if (!reason) {
+                reasonError.classList.remove('hidden');
+                isValid = false;
+            }
 
-            // Hide message after a few seconds
-            setTimeout(() => {
-                messageDiv.classList.add('hidden');
-                messageDiv.classList.remove('text-green-600');
-            }, 5000);
+            if (!isValid) return;
+
+            // Simulate API call
+            fetch('https://api.example.com/appointments', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, contact, reason })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Submission failed');
+                return response.json();
+            })
+            .then(() => {
+                messageDiv.textContent = 'Thank you for your appointment request! We will contact you shortly.';
+                messageDiv.classList.remove('hidden', 'text-red-500');
+                messageDiv.classList.add('text-green-600');
+                event.target.reset();
+                setTimeout(() => {
+                    messageDiv.classList.add('hidden');
+                    messageDiv.classList.remove('text-green-600');
+                }, 5000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageDiv.textContent = 'An error occurred. Please try again later.';
+                messageDiv.classList.remove('hidden', 'text-green-600');
+                messageDiv.classList.add('text-red-500');
+            });
         }
 
-        // Initialize the home section to be visible on load
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             showSection('home');
         });
