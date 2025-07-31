@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="San Carlos City Social Hygiene Unit provides health services, STI/HIV prevention, testing, and support for the community.">
-    <meta name="keywords" content="San Carlos City, Social Hygiene, STI, HIV, health services, testing, counseling">
-    <meta property="og:title" content="San Carlos City CHO - Social Hygiene Unit">
+    <meta name="description" content="San Carlos City Social Hygiene Clinic provides health services, STI/HIV prevention, testing, and support for the community.">
+    <meta name="keywords" content="San Carlos City, Social Hygiene Clinic, STI, HIV, health services, testing, counseling, anonymous, appointment, contact">
+    <meta property="og:title" content="San Carlos City Social Hygiene Clinic">
     <meta property="og:description" content="Promoting health and preventing STIs in San Carlos City through compassionate care and education.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://example.com">
     <meta property="og:image" content="https://example.com/logo.png">
-    <title>San Carlos City CHO - Social Hygiene Unit</title>
-    <!-- Favicon -->
+    <title>San Carlos City Social Hygiene Clinic</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <!-- Preload Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -70,204 +67,237 @@
                 background-color: #374151;
             }
         }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .logo-img {
+            max-width: 100px;
+            height: auto;
+        }
+        .centered-title {
+            text-align: center;
+            flex-grow: 1;
+        }
+        .rainbow-text {
+            background: linear-gradient(to right, #FF9999, #FFFF99, #99CC99, #99CCFF, #CC99CC);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            display: inline;
+        }
+        .lowered-text {
+            margin-top: 20px;
+        }
+        .stacked-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
-    <!-- Header -->
     <header class="bg-red-600 text-white p-4 shadow-lg">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-2xl md:text-3xl font-bold mb-2 md:mb-0 flex items-center">
-                <svg class="h-10 w-auto mr-3" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Pride Flag Logo">
-                    <rect x="0" y="0" width="300" height="33.33" fill="#E40303"/>
-                    <rect x="0" y="33.33" width="300" height="33.33" fill="#FF8C00"/>
-                    <rect x="0" y="66.66" width="300" height="33.33" fill="#FFED00"/>
-                    <rect x="0" y="99.99" width="300" height="33.33" fill="#008026"/>
-                    <rect x="0" y="133.32" width="300" height="33.33" fill="#004DFF"/>
-                    <rect x="0" y="166.65" width="300" height="33.33" fill="#750787"/>
-                </svg>
-                <a href="#" onclick="showSection('home')" class="hover:text-red-200 transition duration-300">San Carlos City CHO</a>
-            </h1>
-            <nav aria-label="Main navigation">
+        <div class="container mx-auto">
+            <div class="header-content">
+                <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/main/CHO%20logo.png" alt="San Carlos City Social Hygiene Clinic Logo" class="logo-img">
+                <div class="centered-title">
+                    <div class="stacked-title">
+                        <h1 class="text-3xl md:text-4xl font-bold mb-0">
+                            <a href="#" onclick="showSection('home')" class="rainbow-text hover:text-red-200 transition duration-300">San Carlos City</a>
+                        </h1>
+                        <h1 class="text-3xl md:text-4xl font-bold mt-0">
+                            <a href="#" onclick="showSection('home')" class="rainbow-text hover:text-red-200 transition duration-300">Social Hygiene Clinic</a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <nav aria-label="Main navigation" class="mt-4">
                 <ul class="flex flex-wrap justify-center space-x-4 md:space-x-6 text-base md:text-lg">
                     <li><a href="#" onclick="showSection('about')" class="nav-link hover:text-red-200 transition duration-300">About Us</a></li>
-                    <li><a href="#" onclick="showSection('initiatives')" class="nav-link hover:text-red-200 transition duration-300">Initiatives</a></li>
-                    <li><a href="#" onclick="showSection('dashboard')" class="nav-link hover:text-red-200 transition duration-300">Dashboard</a></li>
-                    <li><a href="#" onclick="showSection('appointments')" class="nav-link hover:text-red-200 transition duration-300">Appointments & Contact</a></li>
+                    <li><a href="#" onclick="showSection('education')" class="nav-link hover:text-red-200 transition duration-300">Health Education</a></li>
+                    <li><a href="#" onclick="showSection('services')" class="nav-link hover:text-red-200 transition duration-300">Services</a></li>
                     <li><a href="#" onclick="showSection('directory')" class="nav-link hover:text-red-200 transition duration-300">Treatment Hubs</a></li>
+                    <li><a href="#" onclick="showSection('contact-us')" class="nav-link hover:text-red-200 transition duration-300">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main id="content-area" class="flex-grow container mx-auto p-4 md:p-6 bg-white shadow-lg rounded-lg my-6 md:my-8 transition-all duration-300 ease-in-out" aria-live="polite">
-        <!-- Home Section -->
-        <section id="home" class="active-section">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Welcome to San Carlos City Social Hygiene Unit</h2>
-            <div class="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
-                <div>
-                    <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
-                        We are dedicated to promoting health, preventing the spread of sexually transmitted infections (STIs), including HIV/AIDS, and providing compassionate support to our community. Our commitment is to foster a stigma-free environment where everyone feels empowered to seek information, testing, and care.
-                    </p>
-                    <p class="text-gray-700 text-base md:text-lg leading-relaxed">
-                        Explore our website to learn more about our vision, mission, ongoing initiatives, and how you can access vital services. Together, we can build a healthier and more informed San Carlos City.
-                    </p>
-                    <button onclick="showSection('about')" class="mt-6 px-6 py-3 bg-red-500 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400">Learn More About Us</button>
-                </div>
+        <section id="home" class="active-section pt-16 pb-12"> <div class="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
                 <div class="flex justify-center p-4">
                     <div class="text-center p-6 md:p-8 bg-blue-100 rounded-lg shadow-xl border-4 border-blue-300">
-                        <p class="text-4xl md:text-6xl font-extrabold text-blue-800 leading-tight">Welcome, <br class="md:hidden"> Kabaleyan!</p>
+                        <p class="text-4xl md:text-6xl font-extrabold text-blue-800 leading-tight">Welcome, Kabaleyan!</p>
                         <p class="text-base md:text-lg text-blue-600 mt-2">Your health, our priority.</p>
                     </div>
+                </div>
+                <div>
+                    <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-8">
+                        We provide health education, STI/HIV prevention, testing, and support from Monday to Friday, 8 AM - 5 PM. Explore our services to stay healthy and informed!
+                    </p>
+                    <button onclick="showSection('services')" class="mt-8 px-6 py-3 bg-red-500 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400">Get Started</button>
                 </div>
             </div>
         </section>
 
-        <!-- About Us Section -->
         <section id="about" class="hidden">
             <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">About Us</h2>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Vision</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed">A healthy and empowered San Carlos City where every individual has access to comprehensive social hygiene services, fostering a community free from the burden of STIs and HIV/AIDS.</p>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">A healthy San Carlos City free from STIs and HIV/AIDS through accessible care.</p>
             </div>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Mission</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed">To deliver accessible, confidential, and high-quality social hygiene services, including prevention, testing, treatment, and counseling, through dedicated healthcare professionals and community partnerships, ensuring the well-being of all San Carlos City residents.</p>
-            </div>
-            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
-                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Team</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed">Dr. Natasha Mae Benitez, Program Manager of Communicable Diseases and Chief of Health Informatics, leads innovative programs for diseases like tuberculosis, HIV/AIDS, STIs, leprosy, and WASH, while advancing data-driven healthcare and health equity. Ms. Caroline De Guzman, AIDS Nurse Coordinator, brings over 10 years as an HIV counselor and LGBTQ advocate. Ramjay Perci Novilla, Administrative Officer II, promotes innovation and inclusive leadership. Dr. Susan Benitez, City Health Officer II, oversees all health services with decades of rural experience, ensuring efficient delivery and community health awareness.</p>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">To offer confidential testing, counseling, and education with community support.</p>
             </div>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
-                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Values</h3>
+                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Team</h3>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">Dr. Natasha Mae Benitez (Program Manager), Ms. Caroline De Guzman (AIDS Nurse), Ramjay Perci Novilla (Admin Officer), Dr. Susan Benitez (City Health Officer).</p>
+            </div>
+        </section>
+
+        <section id="education" class="hidden">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Health Education 24/7</h2>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Learn about STI prevention and healthy living anytime. Contact us for resources!</p>
                 <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2">
-                    <li><strong>Compassion:</strong> Providing care with empathy and understanding.</li>
-                    <li><strong>Confidentiality:</strong> Ensuring privacy and trust in all interactions.</li>
-                    <li><strong>Integrity:</strong> Upholding the highest ethical standards.</li>
-                    <li><strong>Accessibility:</strong> Making services available to everyone, regardless of background.</li>
-                    <li><strong>Empowerment:</strong> Educating and enabling individuals to make informed health decisions.</li>
+                    <li><strong>STI Basics:</strong> Understand transmission and prevention.</li>
+                    <li><strong>HIV Prevention:</strong> Tips for safe practices and testing.</li>
                 </ul>
             </div>
         </section>
 
-        <!-- Initiatives Section -->
-        <section id="initiatives" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Our Initiatives</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">Proud and Positive Campaign (2024-Present)</h3>
-                    <p class="text-gray-700 text-base leading-relaxed">Pioneered the first Pride Parade along the Minor Basilica’s pathway, with a ribbon formation, candle lighting, and an HIV speaker, reducing stigma. Led a color fun run, artistic competitions, and an HIV video with 7.9M views, growing our online platform to 35,000 followers and increasing HIV screenings from 456 in 2024 to 353 in Q1 2025.</p>
-                </div>
-                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">Lakbay Kalusugan (launched July 2)</h3>
-                    <p class="text-gray-700 text-base leading-relaxed">Ongoing free HIV and mental health education and screenings in barangays and schools (78 screened so far).</p>
-                </div>
-                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">Pride Parade and HOPE Ambassadors (August)</h3>
-                    <p class="text-gray-700 text-base leading-relaxed">Crowning youth pairs as HIV advocates in a public awareness campaign.</p>
-                </div>
-                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">PHAISEZ (September)</h3>
-                    <p class="text-gray-700 text-base leading-relaxed">A self-esteem and alternative livelihood initiative for women in the sex industry, offering free manicure/pedicure services and health talks.</p>
-                </div>
-                <div class="bg-red-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-3">Parol ng Pag-asa (December)</h3>
-                    <p class="text-gray-700 text-base leading-relaxed">A World AIDS Day community lantern-making event to reduce stigma and increase awareness.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Dashboard Section -->
-        <section id="dashboard" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Dashboard (Coming Soon!)</h2>
-            <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md text-center">
-                <p class="text-gray-700 text-base md:text-lg mb-4">We are currently working on a comprehensive dashboard to provide transparent data and insights into our public health efforts related to social hygiene.</p>
-                <p class="text-gray-700 text-base md:text-lg">This will include statistics on testing, cases, and the impact of our programs. Please check back soon for updates!</p>
-                <div class="mt-6 flex justify-center">
-                    <svg class="w-20 md:w-24 h-20 md:h-24 text-blue-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                    </svg>
-                </div>
-            </div>
-        </section>
-
-        <!-- Appointments & Contact Section -->
-        <section id="appointments" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Appointments & Contact Us</h2>
+        <section id="services" class="hidden">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Our Services</h2>
             <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-                <div class="bg-green-50 p-4 md:p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl md:text-2xl font-semibold text-green-700 mb-4">Get in Touch</h3>
-                    <p class="text-gray-700 text-base md:text-lg mb-2"><strong>Address:</strong> San Carlos City Health Office, Palaris Street, San Carlos City, Pangasinan</p>
-                    <p class="text-gray-700 text-base md:text-lg mb-2"><strong>Phone:</strong> 09776278954</p>
-                    <p class="text-gray-700 text-base md:text-lg mb-2"><strong>Email:</strong> chosccpsocialhygiene@gmail.com</p>
-                    <p class="text-gray-700 text-base md:text-lg"><strong>Operating Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
-                    <div class="mt-4">
-                        <a href="mailto:chosccpsocialhygiene@gmail.com" class="inline-block bg-green-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400">Send us an Email</a>
-                    </div>
-                </div>
                 <div class="bg-yellow-50 p-4 md:p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl md:text-2xl font-semibold text-yellow-700 mb-4">Request an Appointment</h3>
-                    <p class="text-gray-700 text-base mb-4">Please fill out the form below to request an appointment for testing or counseling. We will contact you to confirm the details.</p>
+                    <h3 class="text-xl md:text-2xl font-semibold text-yellow-700 mb-4">Self-Assessment Tool</h3>
+                    <p class="text-gray-700 text-base mb-4">Check your symptoms for a quick health guide:</p>
+                    <form onsubmit="submitAssessmentForm(event)" novalidate>
+                        <div class="mb-4">
+                            <label for="symptoms" class="block text-gray-700 text-sm font-bold mb-2">Symptoms (e.g., fever, cough):</label>
+                            <input type="text" id="symptoms" name="symptoms" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-yellow-400" required aria-describedby="symptoms-error">
+                            <p id="symptoms-error" class="text-red-500 text-sm hidden">Please enter symptoms.</p>
+                        </div>
+                        <button type="submit" class="bg-yellow-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-yellow-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400">Get Advice</button>
+                    </form>
+                    <div id="assessment-message" class="mt-4 text-center text-base md:text-lg font-semibold hidden" role="alert"></div>
+                </div>
+                <div class="bg-green-50 p-4 md:p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl md:text-2xl font-semibold text-green-700 mb-4">Request an Appointment <span class="text-sm text-gray-500">(Confidential)</span></h3>
+                    <p class="text-gray-700 text-base mb-4">Book a confidential visit for testing or counseling (available Monday to Friday, 8 AM - 5 PM).</p>
                     <form onsubmit="submitAppointmentForm(event)" novalidate>
                         <div class="mb-4">
-                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                            <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-yellow-400" required aria-describedby="name-error">
-                            <p id="name-error" class="text-red-500 text-sm hidden">Please enter your name.</p>
+                            <label for="preferred-name" class="block text-gray-700 text-sm font-bold mb-2">Preferred Name / Alias (Optional):</label>
+                            <input type="text" id="preferred-name" name="preferred-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-400">
                         </div>
                         <div class="mb-4">
-                            <label for="contact" class="block text-gray-700 text-sm font-bold mb-2">Contact Number/Email:</label>
-                            <input type="text" id="contact" name="contact" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-yellow-400" required aria-describedby="contact-error">
-                            <p id="contact-error" class="text-red-500 text-sm hidden">Please enter a valid email or phone number.</p>
+                            <label for="contact-info" class="block text-gray-700 text-sm font-bold mb-2">Contact Number or Email (Optional):</label>
+                            <input type="text" id="contact-info" name="contact-info" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-400" aria-describedby="contact-info-error">
+                            <p id="contact-info-error" class="text-red-500 text-sm hidden">Please enter a valid email or phone number if you wish to be contacted.</p>
+                        </div>
+                         <div class="mb-4">
+                            <input type="checkbox" id="anonymous-contact" name="anonymous-contact" class="mr-2" onchange="toggleContactField()">
+                            <label for="anonymous-contact" class="text-gray-700 text-sm">I prefer not to provide contact information.</label>
+                            <p class="text-gray-500 text-xs mt-1">
+                                If checked, we won't be able to contact you. You can still visit during clinic hours.
+                            </p>
                         </div>
                         <div class="mb-6">
-                            <label for="reason" class="block text-gray-700 text-sm font-bold mb-2">Reason for Appointment:</label>
-                            <textarea id="reason" name="reason" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-yellow-400" required aria-describedby="reason-error"></textarea>
-                            <p id="reason-error" class="text-red-500 text-sm hidden">Please provide a reason for your appointment.</p>
+                            <label for="appointment-reason" class="block text-gray-700 text-sm font-bold mb-2">Reason for Appointment:</label>
+                            <textarea id="appointment-reason" name="appointment-reason" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-400" required aria-describedby="appointment-reason-error"></textarea>
+                            <p id="appointment-reason-error" class="text-red-500 text-sm hidden">Please provide a reason for your appointment.</p>
                         </div>
-                        <button type="submit" class="bg-yellow-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-yellow-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400">Submit Request</button>
+                        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400">Submit Request</button>
                     </form>
                     <div id="appointment-message" class="mt-4 text-center text-base md:text-lg font-semibold hidden" role="alert"></div>
                 </div>
+                <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-4">Announcements & Clinics</h3>
+                    <p class="text-gray-700 text-base mb-2">Next Clinic: Aug 5, 2025, 9 AM - 12 PM</p>
+                    <p class="text-gray-700 text-base">Announcement: Free HIV testing this month!</p>
+                </div>
+                <div class="bg-purple-50 p-4 md:p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl md:text-2xl font-semibold text-purple-700 mb-4">Our Initiatives</h3>
+                    <p class="text-gray-700 text-base mb-2"><strong>Proud and Positive Campaign (2024-Present):</strong> Pioneered the first Pride Parade along the Minor Basilica’s pathway, with a ribbon formation, candle lighting, and an HIV speaker, reducing stigma. Led a color fun run, artistic competitions, and an HIV video with 7.9M views, growing our online platform to 35,000 followers and increasing HIV screenings from 456 in 2024 to 353 in Q1 2025.</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>Lakbay Kalusugan (launched July 2):</strong> Ongoing free HIV and mental health education and screenings in barangays and schools (78 screened so far).</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>Pride Parade and HOPE Ambassadors (August 12):</strong> Crowning youth pairs as HIV advocates in a public awareness campaign.</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>PHAISEZ (September):</strong> A self-esteem and alternative livelihood initiative for women in the sex industry, offering free manicure/pedicure services and health talks.</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>Parol ng Pag-asa (December):</strong> A World AIDS Day community lantern-making event to reduce stigma and increase awareness.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Treatment Hubs Directory Section -->
         <section id="directory" class="hidden">
             <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Treatment Hubs & Partner Facilities</h2>
-            <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">Below is a list of accredited treatment hubs and partner facilities in and around San Carlos City where you can access further care and support.</p>
+            <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">Access care at these accredited hubs.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-3">Ilocos Training and Regional Medical Center</h3>
-                    <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient and Inpatient Services</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient/Inpatient</p>
                     <p class="text-gray-700 text-base mb-2"><strong>Address:</strong> Parian, San Fernando City, La Union</p>
                     <p class="text-gray-700 text-base"><strong>Contact:</strong> (072) 607-6418 / (072) 607-9912</p>
                 </div>
                 <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-3">Region 1 Medical Center</h3>
-                    <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient and Inpatient Services</p>
-                    <p class="text-gray-700 text-base mb-2"><strong>Address:</strong> Dagupan City Hall, AB Fernandez Avenue, Downtown District</p>
-                    <p class="text-gray-700 text-base"><strong>Contact:</strong> HACT Chair: Dr. Michiko Manaois 0915-9063375</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient/Inpatient</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>Address:</strong> Dagupan City Hall, AB Fernandez Avenue</p>
+                    <p class="text-700 text-base"><strong>Contact:</strong> Dr. Michiko Manaois 0915-9063375</p>
                 </div>
             </div>
         </section>
+
+        <section id="contact-us" class="hidden">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Contact Us</h2>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Have questions or need assistance? Reach out to us!</p>
+                <div class="mb-4">
+                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">Clinic Information:</h3>
+                    <p class="text-gray-700 text-base"><strong>Phone:</strong> (075) 123-4567 (Main Line)</p>
+                    <p class="text-gray-700 text-base"><strong>Email:</strong> info@sancarloscityshc.gov.ph</p>
+                    <p class="text-gray-700 text-base"><strong>Operating Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
+                    <p class="text-gray-700 text-base"><strong>Address:</strong> San Carlos City Health Office, City Hall Compound, San Carlos City, Pangasinan</p>
+                </div>
+                <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-4">Send Us a Message (Anonymous Option Available):</h3>
+                <form onsubmit="submitContactForm(event)" novalidate>
+                    <div class="mb-4">
+                        <label for="contact-name" class="block text-gray-700 text-sm font-bold mb-2">Your Name (Optional):</label>
+                        <input type="text" id="contact-name" name="contact-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-400">
+                    </div>
+                    <div class="mb-4">
+                        <label for="contact-email" class="block text-gray-700 text-sm font-bold mb-2">Your Email (Optional, for reply):</label>
+                        <input type="email" id="contact-email" name="contact-email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-400" aria-describedby="contact-email-error">
+                        <p id="contact-email-error" class="text-red-500 text-sm hidden">Please enter a valid email address if you wish for a reply.</p>
+                    </div>
+                    <div class="mb-6">
+                        <label for="contact-message" class="block text-gray-700 text-sm font-bold mb-2">Your Message:</label>
+                        <textarea id="contact-message" name="contact-message" rows="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-400" required aria-describedby="contact-message-error"></textarea>
+                        <p id="contact-message-error" class="text-red-500 text-sm hidden">Please enter your message.</p>
+                    </div>
+                    <button type="submit" class="bg-red-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-red-400">Send Message</button>
+                </form>
+                <div id="contact-message-status" class="mt-4 text-center text-base md:text-lg font-semibold hidden" role="alert"></div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white p-4 text-center shadow-inner mt-6 md:mt-8">
         <div class="container mx-auto">
-            <p>&copy; 2025 San Carlos City CHO - Social Hygiene Unit. All rights reserved.</p>
+            <p>&copy; 2025 San Carlos City Social Hygiene Clinic. All rights reserved.</p>
             <p class="text-sm mt-2">Promoting Health, Preventing STIs, Supporting Lives.</p>
         </div>
     </footer>
 
     <script>
-        // Ideally, move this to an external file (e.g., scripts.js)
         function showSection(sectionId) {
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
 
-            // Update sections
             sections.forEach(section => {
                 section.classList.add('hidden');
                 section.classList.remove('active-section');
@@ -280,45 +310,59 @@
                 activeSection.classList.add('active-section');
                 activeSection.setAttribute('aria-hidden', 'false');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                activeSection.querySelector('h2').focus({ preventScroll: true });
+                // Focus on the heading for accessibility
+                const heading = activeSection.querySelector('h2');
+                if (heading) heading.focus({ preventScroll: true });
+                else activeSection.focus({ preventScroll: true }); // Fallback if no h2
             }
 
-            // Update active navigation link
             navLinks.forEach(link => link.classList.remove('active'));
             const activeLink = document.querySelector(`.nav-link[onclick="showSection('${sectionId}')"]`);
             if (activeLink) activeLink.classList.add('active');
         }
 
+        // --- Appointment Form Logic ---
         function validateEmailOrPhone(input) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const phoneRegex = /^\+?\d{10,15}$/;
+            const phoneRegex = /^\+?\d{7,15}$/; // Adjusted phone regex for flexibility
             return emailRegex.test(input) || phoneRegex.test(input);
+        }
+
+        function toggleContactField() {
+            const contactInfoField = document.getElementById('contact-info');
+            const anonymousCheckbox = document.getElementById('anonymous-contact');
+            if (anonymousCheckbox.checked) {
+                contactInfoField.value = ''; // Clear input if going anonymous
+                contactInfoField.readOnly = true;
+                contactInfoField.classList.add('bg-gray-100');
+                contactInfoField.removeAttribute('required'); // No longer required if anonymous
+                document.getElementById('contact-info-error').classList.add('hidden'); // Hide error
+            } else {
+                contactInfoField.readOnly = false;
+                contactInfoField.classList.remove('bg-gray-100');
+                contactInfoField.setAttribute('required', ''); // Re-add required
+            }
         }
 
         function submitAppointmentForm(event) {
             event.preventDefault();
-            const name = document.getElementById('name').value.trim();
-            const contact = document.getElementById('contact').value.trim();
-            const reason = document.getElementById('reason').value.trim();
-            const messageDiv = document.getElementById('appointment-message');
-            const nameError = document.getElementById('name-error');
-            const contactError = document.getElementById('contact-error');
-            const reasonError = document.getElementById('reason-error');
+            const preferredName = document.getElementById('preferred-name').value.trim();
+            const contactInfo = document.getElementById('contact-info').value.trim();
+            const reason = document.getElementById('appointment-reason').value.trim();
+            const anonymousContact = document.getElementById('anonymous-contact').checked;
 
-            // Reset errors
-            nameError.classList.add('hidden');
-            contactError.classList.add('hidden');
+            const messageDiv = document.getElementById('appointment-message');
+            const contactInfoError = document.getElementById('contact-info-error');
+            const reasonError = document.getElementById('appointment-reason-error');
+
+            contactInfoError.classList.add('hidden');
             reasonError.classList.add('hidden');
             messageDiv.classList.add('hidden');
 
             let isValid = true;
 
-            if (!name) {
-                nameError.classList.remove('hidden');
-                isValid = false;
-            }
-            if (!contact || !validateEmailOrPhone(contact)) {
-                contactError.classList.remove('hidden');
+            if (!anonymousContact && (!contactInfo || !validateEmailOrPhone(contactInfo))) {
+                contactInfoError.classList.remove('hidden');
                 isValid = false;
             }
             if (!reason) {
@@ -328,32 +372,155 @@
 
             if (!isValid) return;
 
-            // Simulate local submission with a delay
             messageDiv.classList.remove('hidden');
             messageDiv.textContent = 'Processing your request...';
+
+            // Prepare data to send
+            const formData = {
+                preferredName: preferredName || 'Anonymous', // Store "Anonymous" if no name provided
+                contactInfo: anonymousContact ? 'Not provided (Anonymous)' : contactInfo,
+                reason: reason
+            };
+
+            // This is a placeholder for actual submission.
+            // In a real application, you would send this 'formData' to your backend (e.g., Back4App).
+            console.log('Appointment Request Data:', formData);
+
+            // Simulate API call
             setTimeout(() => {
-                // Simulate success (randomly 80% chance of success for testing)
-                const isSuccess = Math.random() > 0.2;
+                const isSuccess = Math.random() > 0.1; // Simulate 90% success rate
+
                 if (isSuccess) {
-                    messageDiv.textContent = 'Thank you for your appointment request! We will contact you shortly.';
+                    messageDiv.textContent = anonymousContact
+                        ? 'Your anonymous request has been received. Please visit the clinic during operating hours.'
+                        : 'Thank you! We’ll contact you soon regarding your appointment.';
+                    messageDiv.classList.remove('text-red-500');
+                    messageDiv.classList.add('text-green-600');
+                    event.target.reset(); // Clear form on success
+                    toggleContactField(); // Reset contact field state
+                } else {
+                    messageDiv.textContent = 'Error submitting your request. Please try again.';
+                    messageDiv.classList.remove('text-green-600');
+                    messageDiv.classList.add('text-red-500');
+                }
+
+                setTimeout(() => {
+                    messageDiv.classList.add('hidden');
+                    messageDiv.classList.remove('text-green-600', 'text-red-500');
+                }, 7000); // Keep message longer for clarity
+            }, 1500); // Simulate network delay
+        }
+
+        // --- Self-Assessment Form Logic ---
+        function submitAssessmentForm(event) {
+            event.preventDefault();
+            const symptomsInput = document.getElementById('symptoms').value.trim();
+            const symptoms = symptomsInput.split(',').map(s => s.trim()).filter(s => s);
+            const messageDiv = document.getElementById('assessment-message');
+            const symptomsError = document.getElementById('symptoms-error');
+
+            symptomsError.classList.add('hidden');
+            messageDiv.classList.add('hidden');
+
+            if (symptoms.length === 0) {
+                symptomsError.classList.remove('hidden');
+                return;
+            }
+
+            messageDiv.classList.remove('hidden');
+            messageDiv.textContent = 'Processing your assessment...';
+
+            // This is a placeholder for actual submission.
+            // In a real application, you would send this 'symptoms' data to your backend for a more intelligent triage.
+            console.log('Assessment Symptoms:', symptoms);
+
+            // Simulate API call for assessment
+            setTimeout(() => {
+                const possibleTriages = [
+                    "We recommend you visit the clinic for a consultation.",
+                    "Your symptoms suggest seeking medical advice. Please visit us or a nearby facility.",
+                    "No immediate red flags based on symptoms. Consider monitoring and reach out if symptoms persist or worsen.",
+                    "Please consult with a healthcare professional for accurate diagnosis."
+                ];
+                const simulatedTriage = possibleTriages[Math.floor(Math.random() * possibleTriages.length)];
+
+                messageDiv.textContent = `Assessment complete: ${simulatedTriage}`;
+                messageDiv.classList.remove('text-red-500');
+                messageDiv.classList.add('text-green-600');
+                event.target.reset(); // Clear form
+
+                setTimeout(() => {
+                    messageDiv.classList.add('hidden');
+                    messageDiv.classList.remove('text-green-600', 'text-red-500');
+                }, 7000); // Keep message longer for clarity
+            }, 1500); // Simulate network delay
+        }
+
+        // --- General Contact Form Logic ---
+        function submitContactForm(event) {
+            event.preventDefault();
+            const contactName = document.getElementById('contact-name').value.trim();
+            const contactEmail = document.getElementById('contact-email').value.trim();
+            const contactMessage = document.getElementById('contact-message').value.trim();
+
+            const messageDiv = document.getElementById('contact-message-status');
+            const emailError = document.getElementById('contact-email-error');
+            const messageError = document.getElementById('contact-message-error');
+
+            emailError.classList.add('hidden');
+            messageError.classList.add('hidden');
+            messageDiv.classList.add('hidden');
+
+            let isValid = true;
+
+            if (contactEmail && !validateEmailOrPhone(contactEmail)) { // Optional email, but if provided, must be valid
+                emailError.classList.remove('hidden');
+                isValid = false;
+            }
+            if (!contactMessage) {
+                messageError.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            messageDiv.classList.remove('hidden');
+            messageDiv.textContent = 'Sending your message...';
+
+            const formData = {
+                name: contactName || 'Anonymous',
+                email: contactEmail || 'Not provided',
+                message: contactMessage
+            };
+
+            console.log('Contact Message Data:', formData);
+
+            // Simulate API call for contact message
+            setTimeout(() => {
+                const isSuccess = Math.random() > 0.1;
+
+                if (isSuccess) {
+                    messageDiv.textContent = contactName ? 'Thank you for your message! We will get back to you soon.' : 'Thank you for your anonymous message!';
                     messageDiv.classList.remove('text-red-500');
                     messageDiv.classList.add('text-green-600');
                     event.target.reset();
                 } else {
-                    messageDiv.textContent = 'An error occurred. Please try again later.';
+                    messageDiv.textContent = 'Error sending message. Please try again.';
                     messageDiv.classList.remove('text-green-600');
                     messageDiv.classList.add('text-red-500');
                 }
+
                 setTimeout(() => {
                     messageDiv.classList.add('hidden');
                     messageDiv.classList.remove('text-green-600', 'text-red-500');
-                }, 5000);
-            }, 1000); // 1-second delay to simulate processing
+                }, 7000);
+            }, 1500);
         }
 
-        // Initialize
+
         document.addEventListener('DOMContentLoaded', () => {
             showSection('home');
+            toggleContactField(); // Initialize the state of the contact field based on checkbox
         });
     </script>
 </body>
