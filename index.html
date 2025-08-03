@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -29,11 +30,11 @@
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #dc2626;
+            background: linear-gradient(to bottom, #b91c1c, #e53e3e); /* Red ribbon effect */
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #b91c1c;
+            background: linear-gradient(to bottom, #991b1b, #c53030); /* Darker red ribbon on hover */
         }
         html, body {
             min-height: 100vh;
@@ -97,6 +98,44 @@
             flex-direction: column;
             align-items: center;
         }
+        .cta-banner {
+            background: linear-gradient(to right, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .yes-no-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .yes-no-label input {
+            margin-right: 0.5rem;
+        }
+        .initiatives-title {
+            background-color: #E9D5FF;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .email-highlight {
+            background-color: #BFDBFE;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+        }
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -118,19 +157,64 @@
             </div>
             <nav aria-label="Main navigation" class="mt-4">
                 <ul class="flex flex-wrap justify-center space-x-4 md:space-x-6 text-base md:text-lg">
-                    <li><a href="#" onclick="showSection('about')" class="nav-link hover:text-red-200 transition duration-300">About Us</a></li>
-                    <li><a href="#" onclick="showSection('education')" class="nav-link hover:text-red-200 transition duration-300">Health Education</a></li>
-                    <li><a href="#" onclick="showSection('services')" class="nav-link hover:text-red-200 transition duration-300">Services</a></li>
-                    <li><a href="#" onclick="showSection('directory')" class="nav-link hover:text-red-200 transition duration-300">Treatment Hubs</a></li>
-                    <li><a href="#" onclick="showSection('resources')" class="nav-link hover:text-red-200 transition duration-300">Resources</a></li>
-                    <li><a href="#" onclick="showSection('contact-us')" class="nav-link hover:text-red-200 transition duration-300">Contact Us</a></li>
+                    <li>
+                        <a href="#" onclick="showSection('about')" class="nav-link hover:text-red-200 transition duration-300 flex items-center">
+                            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('education')" class="nav-link hover:text-red-200 transition duration-300 flex items-center">
+                            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                            Health Education
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('services')" class="nav-link hover:text-red-200 transition duration-300 flex items-center">
+                            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Services
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('directory')" class="nav-link hover:text-red-200 transition duration-300 flex items-center">
+                            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path></svg>
+                            Treatment Hubs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('resources')" class="nav-link hover:text-red-200 transition duration-300 flex items-center">
+                            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path></svg>
+                            Resources
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('dashboard')" class="nav-link hover:text-red-200 transition duration-300 flex items-center">
+                            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"></path></svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('contact-us')" class="nav-link hover:text-red-200 transition duration-300 flex items-center">
+                            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            Contact Us
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main id="content-area" class="flex-grow container mx-auto p-4 md:p-6 bg-white shadow-lg rounded-lg my-6 md:my-8 transition-all duration-300 ease-in-out" aria-live="polite">
-        <section id="home" class="active-section pt-16 pb-12"> <div class="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+        <section id="home" class="active-section pt-16 pb-12">
+            <div class="cta-banner">
+                <h3 class="text-xl md:text-2xl font-bold flex items-center justify-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    Join Parol ng Pag-asa!
+                </h3>
+                <p>December 1, 2025: Community lantern-making for World AIDS Day. Register now!</p>
+                <button onclick="showSection('contact-us')" class="mt-2 px-4 py-2 bg-white text-red-600 rounded-full hover:bg-gray-100 transition duration-300">Register</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
                 <div class="flex justify-center p-4">
                     <div class="text-center p-6 md:p-8 bg-blue-100 rounded-lg shadow-xl border-4 border-blue-300">
                         <p class="text-4xl md:text-6xl font-extrabold text-blue-800 leading-tight">Welcome, Kabaleyan!</p>
@@ -141,13 +225,19 @@
                     <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-8">
                         We provide health education, STI/HIV prevention, testing, and support from Monday to Friday, 8 AM - 5 PM. Explore our services to stay healthy and informed!
                     </p>
-                    <button onclick="showSection('services')" class="mt-8 px-6 py-3 bg-red-500 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400">Get Started</button>
+                    <div class="flex items-center">
+                        <button onclick="showSection('services')" class="px-6 py-3 bg-red-500 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400">Get Started</button>
+                        <svg class="w-6 h-6 ml-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="about" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">About Us</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                About Us
+            </h2>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Vision</h3>
                 <p class="text-gray-700 text-base md:text-lg leading-relaxed">To achieve a thriving, healthy San Carlos City where every individual is free from the burden of STIs and HIV/AIDS, supported by accessible, compassionate, and stigma-free care.</p>
@@ -167,8 +257,8 @@
                 <p class="text-gray-700 text-base md:text-lg leading-relaxed">Our dedicated team is committed to your health and privacy:</p>
                 <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2 mt-2">
                     <li><strong>Dr. Natasha Mae Benitez</strong> (Program Manager): Leads our initiatives with a focus on strategic planning and community health.</li>
-                    <li><strong>Ms. Caroline De Guzman</strong> (AIDS Nurse): Provides expert nursing care, counseling, and direct patient support.</li>
-                    <li><strong>Ms. Jeanette Trinidad</strong> (Chief Medical Technologist, HIV Prevention Advocate): Oversees laboratory services and champions HIV prevention efforts.</li>
+                    <li><strong>Ms. Caroline De Guzman</strong> (AIDS Nurse, LGBT Advocate): Provides expert nursing care, counseling, direct patient support, and champions LGBT health and inclusion.</li>
+                    <li><strong>Ms. Jeanette Trinidad</strong> (Chief Medical Technologist, HIV-Proficient Medical Technologist, HIV Prevention Advocate): Oversees laboratory services with expertise in HIV testing and champions HIV prevention efforts.</li>
                     <li><strong>Mr. Ramjay Perci Novilla</strong> (Admin Officer): Ensures smooth clinic operations and efficient service delivery.</li>
                     <li><strong>Dr. Susan Benitez</strong> (City Health Officer): Oversees public health programs and guides our clinic's mission to serve San Carlos City.</li>
                 </ul>
@@ -176,7 +266,10 @@
         </section>
 
         <section id="education" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Empower Yourself with Knowledge: Health Education</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                Empower Yourself with Knowledge: Health Education
+            </h2>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Understanding STIs and HIV: What You Need to Know</h3>
                 <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
@@ -188,7 +281,6 @@
                     <li><strong>Importance of Early Detection:</strong> Early diagnosis allows for timely treatment, which can prevent serious health complications and reduce the risk of transmission to others.</li>
                 </ul>
             </div>
-
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Prevention is Key: Stay Safe and Healthy</h3>
                 <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
@@ -202,7 +294,6 @@
                     <li><strong>Vaccinations:</strong> Vaccines are available for certain STIs like HPV (Human Papillomavirus). Ask our clinic about eligibility and benefits.</li>
                 </ul>
             </div>
-
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Breaking the Stigma: Creating a Supportive Community</h3>
                 <p class="text-gray-700 text-base md:text-lg leading-relaxed">
@@ -214,52 +305,65 @@
                     <li><strong>Education and Advocacy:</strong> We actively work to educate the public and advocate for policies that reduce stigma and promote understanding.</li>
                 </ul>
                 <p class="text-gray-700 text-base md:text-lg leading-relaxed mt-4">
-                    For more detailed information or to schedule a confidential chat, please don't hesitate to <a href="#" onclick="showSection('contact-us')" class="text-blue-600 hover:underline">contact us</a>. Your health journey starts with awareness and action!
+                    For more detailed information or to schedule a confidential chat, please reach out via our <a href="#" onclick="showSection('contact-us')" class="text-blue-600 hover:underline">contact information</a>. Your health journey starts with awareness and action!
                 </p>
             </div>
         </section>
 
         <section id="services" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Our Services</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Our Services
+            </h2>
             <div class="grid md:grid-cols-2 gap-6 md:gap-8">
                 <div class="bg-yellow-50 p-4 md:p-6 rounded-lg shadow-md">
                     <h3 class="text-xl md:text-2xl font-semibold text-yellow-700 mb-4">Self-Assessment Tool</h3>
-                    <p class="text-gray-700 text-base mb-4">Check your symptoms for a quick health guide:</p>
-                    <form onsubmit="submitAssessmentForm(event)" novalidate>
+                    <p class="text-gray-700 text-base mb-4">Answer these yes-or-no questions to see if you should book an appointment:</p>
+                    <form onsubmit="submitAssessmentForm(event)" novalidate aria-labelledby="self-assessment-heading">
+                        <h4 id="self-assessment-heading" class="sr-only">HIV/STI Risk Self-Assessment Form</h4>
                         <div class="mb-4">
-                            <label for="symptoms" class="block text-gray-700 text-sm font-bold mb-2">Symptoms (e.g., fever, cough):</label>
-                            <input type="text" id="symptoms" name="symptoms" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-yellow-400" required aria-describedby="symptoms-error">
-                            <p id="symptoms-error" class="text-red-500 text-sm hidden">Please enter symptoms.</p>
+                            <div class="yes-no-label">
+                                <input type="checkbox" id="q1" name="risk-factors" value="unprotected-sex">
+                                <label for="q1" class="text-gray-700 text-sm">Have you had unprotected sexual contact (vaginal, anal, or oral) in the past 12 months?</label>
+                            </div>
+                            <div class="yes-no-label">
+                                <input type="checkbox" id="q2" name="risk-factors" value="multiple-partners">
+                                <label for="q2" class="text-gray-700 text-sm">Have you had multiple sexual partners in the past 12 months?</label>
+                            </div>
+                            <div class="yes-no-label">
+                                <input type="checkbox" id="q3" name="risk-factors" value="symptoms">
+                                <label for="q3" class="text-gray-700 text-sm">Have you experienced symptoms like unusual discharge, sores, or pain during urination?</label>
+                            </div>
+                            <div class="yes-no-label">
+                                <input type="checkbox" id="q4" name="risk-factors" value="shared-needles">
+                                <label for="q4" class="text-gray-700 text-sm">Have you shared needles or other drug injection equipment?</label>
+                            </div>
+                            <div class="yes-no-label">
+                                <input type="checkbox" id="q5" name="risk-factors" value="hiv-partner">
+                                <label for="q5" class="text-gray-700 text-sm">Have you had a sexual partner who is HIV-positive or whose HIV status is unknown?</label>
+                            </div>
+                            <div class="yes-no-label">
+                                <input type="checkbox" id="q6" name="risk-factors" value="sti-diagnosis">
+                                <label for="q6" class="text-gray-700 text-sm">Have you been diagnosed with an STI in the past?</label>
+                            </div>
+                            <p id="assessment-error" class="text-red-500 text-sm hidden">Please answer at least one question.</p>
                         </div>
-                        <button type="submit" class="bg-yellow-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-yellow-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400">Get Advice</button>
+                        <input type="hidden" id="recaptcha-token-assessment" name="recaptcha-token">
+                        <button type="submit" class="bg-yellow-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-yellow-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400">Check Results</button>
                     </form>
                     <div id="assessment-message" class="mt-4 text-center text-base md:text-lg font-semibold hidden" role="alert"></div>
                 </div>
                 <div class="bg-green-50 p-4 md:p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl md:text-2xl font-semibold text-green-700 mb-4">Request an Appointment <span class="text-sm text-gray-500">(Confidential)</span></h3>
-                    <p class="text-gray-700 text-base mb-4">Book a confidential visit for testing or counseling (available Monday to Friday, 8 AM - 5 PM).</p>
-                    <form onsubmit="submitAppointmentForm(event)" novalidate>
-                        <div class="mb-4">
-                            <label for="preferred-name" class="block text-gray-700 text-sm font-bold mb-2">Preferred Name / Alias (Optional):</label>
-                            <input type="text" id="preferred-name" name="preferred-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-400">
-                        </div>
-                        <div class="mb-4">
-                            <label for="contact-info" class="block text-gray-700 text-sm font-bold mb-2">Contact Number or Email (Optional):</label>
-                            <input type="text" id="contact-info" name="contact-info" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-400" aria-describedby="contact-info-error">
-                            <p id="contact-info-error" class="text-red-500 text-sm hidden">Please enter a valid email or phone number if you wish to be contacted.</p>
-                        </div>
-                         <div class="mb-4">
-                            <input type="checkbox" id="anonymous-contact" name="anonymous-contact" class="mr-2" onchange="toggleContactField()">
-                            <label for="anonymous-contact" class="text-gray-700 text-sm">I prefer not to provide contact information.</label>
-                            <p class="text-gray-500 text-xs mt-1">
-                                If checked, we won't be able to contact you. You can still visit during clinic hours.
-                            </p>
-                        </div>
+                    <h3 class="text-xl md:text-2xl font-semibold text-green-700 mb-4">Request an Appointment <span class="text-sm text-gray-500">(Anonymous)</span></h3>
+                    <p class="text-gray-700 text-base mb-4">Book a confidential, anonymous visit for testing or counseling (Monday to Friday, 8 AM - 5 PM). You’ll receive a time-sensitive code to present at the clinic.</p>
+                    <form onsubmit="submitAppointmentForm(event)" novalidate aria-labelledby="appointment-heading">
+                        <h4 id="appointment-heading" class="sr-only">Anonymous Appointment Request Form</h4>
                         <div class="mb-6">
                             <label for="appointment-reason" class="block text-gray-700 text-sm font-bold mb-2">Reason for Appointment:</label>
                             <textarea id="appointment-reason" name="appointment-reason" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-400" required aria-describedby="appointment-reason-error"></textarea>
                             <p id="appointment-reason-error" class="text-red-500 text-sm hidden">Please provide a reason for your appointment.</p>
                         </div>
+                        <input type="hidden" id="recaptcha-token-appointment" name="recaptcha-token">
                         <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400">Submit Request</button>
                     </form>
                     <div id="appointment-message" class="mt-4 text-center text-base md:text-lg font-semibold hidden" role="alert"></div>
@@ -270,38 +374,43 @@
                     <p class="text-gray-700 text-base">Announcement: Free HIV testing this month!</p>
                 </div>
                 <div class="bg-purple-50 p-4 md:p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl md:text-2xl font-semibold text-purple-700 mb-4">Our Initiatives</h3>
-                    <p class="text-gray-700 text-base mb-2">Proud and Positive Campaign (2024-Present): Pioneered the first Pride Parade along the Minor Basilica’s pathway, with a ribbon formation, candle lighting, and an HIV speaker, reducing stigma. Led a color fun run, artistic competitions, and an HIV video with 7.9M views, growing our online platform to 35,000 followers and increasing HIV screenings from 456 in 2024 to 353 in Q1 2025.</p>
-                    <p class="text-gray-700 text-base mb-2">Lakbay Kalusugan (launched July 2): Ongoing free HIV and mental health education and screenings in barangays and schools (78 screened so far).</p>
-                    <p class="text-700 text-base mb-2">Pride Parade and HOPE Ambassadors (August 12): Crowning youth pairs as HIV advocates in a public awareness campaign.</p>
-                    <p class="text-gray-700 text-base mb-2">PHAISEZ (September): A self-esteem and alternative livelihood initiative for women in the sex industry, offering free manicure/pedicure services and health talks.</p>
-                    <p class="text-gray-700 text-base mb-2">Parol ng Pag-asa (December): A World AIDS Day community lantern-making event to reduce stigma and increase awareness.</p>
+                    <h3 class="text-xl md:text-2xl font-semibold text-purple-700 mb-4 initiatives-title">Our Initiatives</h3>
+                    <p class="text-gray-700 text-base mb-2"><span class="font-bold">Proud and Positive Campaign</span> (2024-Present): Pioneered the first Pride Parade along the Minor Basilica’s pathway, with a ribbon formation, candle lighting, and an HIV speaker, reducing stigma. Led a color fun run, artistic competitions, and an HIV video with <span class="font-bold" aria-label="7.9 million views">7.9M views</span>, growing our online platform to <span class="font-bold" aria-label="35,000 followers">35,000 followers</span> and increasing HIV screenings from <span class="font-bold" aria-label="456 screenings in 2024 to 353 in Q1 2025">456 in 2024 to 353 in Q1 2025</span>.</p>
+                    <p class="text-gray-700 text-base mb-2"><span class="font-bold">Lakbay Kalusugan</span> (launched July 2): Ongoing free HIV and mental health education and screenings in barangays and schools (<span class="font-bold" aria-label="78 people screened">78 screened</span> so far).</p>
+                    <p class="text-gray-700 text-base mb-2"><span class="font-bold">Pride Parade and HOPE Ambassadors</span> (August 12): Crowning youth pairs as HIV advocates in a public awareness campaign.</p>
+                    <p class="text-gray-700 text-base mb-2"><span class="font-bold">PHAISEZ</span> (September): A self-esteem and alternative livelihood initiative for women in the sex industry, offering free manicure/pedicure services and health talks.</p>
+                    <p class="text-gray-700 text-base mb-2"><span class="font-bold">Parol ng Pag-asa</span> (December 1, 2025): Join our World AIDS Day community lantern-making event at San Carlos City Plaza. Participate in workshops, awareness talks, and a lantern parade to reduce stigma and promote hope. Register by contacting us below.</p>
                 </div>
             </div>
         </section>
 
         <section id="directory" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Treatment Hubs & Partner Facilities</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path></svg>
+                Treatment Hubs & Partner Facilities
+            </h2>
             <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">Access care at these accredited hubs.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-3">Ilocos Training and Regional Medical Center</h3>
                     <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient/Inpatient</p>
-                    <p class="text-700 text-base mb-2"><strong>Address:</strong> Parian, San Fernando City, La Union</p>
+                    <p class="text-gray-700 text-base mb-2"><strong>Address:</strong> Parian, San Fernando City, La Union</p>
                     <p class="text-gray-700 text-base"><strong>Contact:</strong> (072) 607-6418 / (072) 607-9912</p>
                 </div>
                 <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-3">Region 1 Medical Center</h3>
                     <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient/Inpatient</p>
                     <p class="text-gray-700 text-base mb-2"><strong>Address:</strong> Dagupan City Hall, AB Fernandez Avenue</p>
-                    <p class="text-700 text-base"><strong>Contact:</strong> Dr. Michiko Manaois 0915-9063375</p>
+                    <p class="text-gray-700 text-base"><strong>Contact:</strong> Dr. Michiko Manaois 0915-9063375</p>
                 </div>
             </div>
         </section>
 
         <section id="resources" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Important Guidelines & Resources</h2>
-
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path></svg>
+                Important Guidelines & Resources
+            </h2>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">HIV/STI Guidelines & Information</h3>
                 <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2">
@@ -312,7 +421,6 @@
                     <li><a href="https://www.aidsdatahub.org/sites/default/files/resource/doh-philippines-guidelines-management-sti-pregnancy.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">DOH Philippines Guidelines for Management of STI in Pregnancy - AIDSDataHub.org</a></li>
                 </ul>
             </div>
-
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">TB Guidelines & Information</h3>
                 <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2">
@@ -322,43 +430,44 @@
             </div>
         </section>
 
+        <section id="dashboard" class="hidden">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"></path></svg>
+                Dashboard
+            </h2>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md text-center">
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">
+                    The dashboard is currently under development and will be operational soon.
+                </p>
+            </div>
+        </section>
+
         <section id="contact-us" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center">Contact Us</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                Contact Us
+            </h2>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
                 <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Have questions or need assistance? Reach out to us!</p>
                 <div class="mb-4">
-                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">Clinic Information:</h3>
+                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">Social Hygiene Clinic Contact:</h3>
                     <p class="text-gray-700 text-base"><strong>Phone:</strong> (075) 123-4567 (Main Line)</p>
-                    <p class="text-gray-700 text-base"><strong>Email:</strong> chosccpsocialhygiene@gmail.com</p>
+                    <p class="text-gray-700 text-base"><strong>Email:</strong> <a href="mailto:chosccpsocialhygiene@gmail.com" class="text-blue-600 hover:underline email-highlight">chosccpsocialhygiene@gmail.com</a></p>
                     <p class="text-gray-700 text-base"><strong>Operating Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
                     <p class="text-gray-700 text-base"><strong>Address:</strong> San Carlos City Health Office, City Hall Compound, San Carlos City, Pangasinan</p>
+                </div>
+                <div class="mb-4">
+                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">City Health Office Contact:</h3>
+                    <p class="text-gray-700 text-base"><strong>Facebook:</strong> <a href="https://www.facebook.com/sccp.cho" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">City Health Office - SCCP</a></p>
+                    <p class="text-gray-700 text-base"><strong>Phone:</strong> <a href="tel:+639693171593" class="text-blue-600 hover:underline">0969 317 1593</a></p>
+                    <p class="text-gray-700 text-base"><strong>Email:</strong> <a href="mailto:chosccp@gmail.com" class="text-blue-600 hover:underline email-highlight">chosccp@gmail.com</a></p>
                 </div>
                 <div class="mb-4">
                     <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">Mental Health Support:</h3>
                     <p class="text-gray-700 text-base"><strong>DOH-NCMH Crisis Hotline:</strong> <a href="tel:+639178998727" class="text-blue-600 hover:underline">0917-899-8727</a></p>
                 </div>
-                <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-4">Send Us a Message (Anonymous Option Available):</h3>
-                <form onsubmit="submitContactForm(event)" novalidate>
-                    <div class="mb-4">
-                        <label for="contact-name" class="block text-gray-700 text-sm font-bold mb-2">Your Name (Optional):</label>
-                        <input type="text" id="contact-name" name="contact-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-400">
-                    </div>
-                    <div class="mb-4">
-                        <label for="contact-email" class="block text-gray-700 text-sm font-bold mb-2">Your Email (Optional, for reply):</label>
-                        <input type="email" id="contact-email" name="contact-email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-400" aria-describedby="contact-email-error">
-                        <p id="contact-email-error" class="text-red-500 text-sm hidden">Please enter a valid email address if you wish for a reply.</p>
-                    </div>
-                    <div class="mb-6">
-                        <label for="contact-message" class="block text-gray-700 text-sm font-bold mb-2">Your Message:</label>
-                        <textarea id="contact-message" name="contact-message" rows="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-400" required aria-describedby="contact-message-error"></textarea>
-                        <p id="contact-message-error" class="text-red-500 text-sm hidden">Please enter your message.</p>
-                    </div>
-                    <button type="submit" class="bg-red-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-red-400">Send Message</button>
-                </form>
-                <div id="contact-message-status" class="mt-4 text-center text-base md:text-lg font-semibold hidden" role="alert"></div>
             </div>
         </section>
-
     </main>
 
     <footer class="bg-gray-800 text-white p-4 text-center shadow-inner mt-6 md:mt-8">
@@ -369,6 +478,39 @@
     </footer>
 
     <script>
+        // Generate a unique appointment code
+        function generateAppointmentCode() {
+            const timestamp = Date.now();
+            const random = Math.random().toString(36).substr(2, 9);
+            return `SCC-${timestamp}-${random}`.toUpperCase();
+        }
+
+        // Get reCAPTCHA token
+        function getRecaptchaToken(action) {
+            return new Promise((resolve, reject) => {
+                grecaptcha.ready(() => {
+                    grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: action })
+                        .then(token => resolve(token))
+                        .catch(error => {
+                            console.error('reCAPTCHA error:', error);
+                            resolve(''); // Fallback for testing
+                        });
+                });
+            });
+        }
+
+        // Simulate Back4App submission
+        async function submitToBack4App(formData, endpoint) {
+            try {
+                console.log(`Submitting to Back4App endpoint: ${endpoint}`, formData);
+                return { success: Math.random() > 0.1 };
+            } catch (error) {
+                console.error('Back4App submission error:', error);
+                return { success: false };
+            }
+        }
+
+        // Show/hide sections and handle navigation
         function showSection(sectionId) {
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -385,10 +527,9 @@
                 activeSection.classList.add('active-section');
                 activeSection.setAttribute('aria-hidden', 'false');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                // Focus on the heading for accessibility
                 const heading = activeSection.querySelector('h2');
                 if (heading) heading.focus({ preventScroll: true });
-                else activeSection.focus({ preventScroll: true }); // Fallback if no h2
+                else activeSection.focus({ preventScroll: true });
             }
 
             navLinks.forEach(link => link.classList.remove('active'));
@@ -396,206 +537,123 @@
             if (activeLink) activeLink.classList.add('active');
         }
 
-        // --- Appointment Form Logic ---
-        function validateEmailOrPhone(input) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const phoneRegex = /^\+?\d{7,15}$/; // Adjusted phone regex for flexibility
-            return emailRegex.test(input) || phoneRegex.test(input);
-        }
-
-        function toggleContactField() {
-            const contactInfoField = document.getElementById('contact-info');
-            const anonymousCheckbox = document.getElementById('anonymous-contact');
-            if (anonymousCheckbox.checked) {
-                contactInfoField.value = ''; // Clear input if going anonymous
-                contactInfoField.readOnly = true;
-                contactInfoField.classList.add('bg-gray-100');
-                contactInfoField.removeAttribute('required'); // No longer required if anonymous
-                document.getElementById('contact-info-error').classList.add('hidden'); // Hide error
-            } else {
-                contactInfoField.readOnly = false;
-                contactInfoField.classList.remove('bg-gray-100');
-                contactInfoField.setAttribute('required', ''); // Re-add required
-            }
-        }
-
-        function submitAppointmentForm(event) {
+        // Handle appointment form submission
+        async function submitAppointmentForm(event) {
             event.preventDefault();
-            const preferredName = document.getElementById('preferred-name').value.trim();
-            const contactInfo = document.getElementById('contact-info').value.trim();
             const reason = document.getElementById('appointment-reason').value.trim();
-            const anonymousContact = document.getElementById('anonymous-contact').checked;
-
             const messageDiv = document.getElementById('appointment-message');
-            const contactInfoError = document.getElementById('contact-info-error');
             const reasonError = document.getElementById('appointment-reason-error');
 
-            contactInfoError.classList.add('hidden');
             reasonError.classList.add('hidden');
             messageDiv.classList.add('hidden');
 
-            let isValid = true;
-
-            if (!anonymousContact && (!contactInfo || !validateEmailOrPhone(contactInfo))) {
-                contactInfoError.classList.remove('hidden');
-                isValid = false;
-            }
             if (!reason) {
                 reasonError.classList.remove('hidden');
-                isValid = false;
+                return;
             }
-
-            if (!isValid) return;
 
             messageDiv.classList.remove('hidden');
             messageDiv.textContent = 'Processing your request...';
 
-            // Prepare data to send
-            const formData = {
-                preferredName: preferredName || 'Anonymous', // Store "Anonymous" if no name provided
-                contactInfo: anonymousContact ? 'Not provided (Anonymous)' : contactInfo,
-                reason: reason
-            };
+            try {
+                const token = await getRecaptchaToken('appointment');
+                document.getElementById('recaptcha-token-appointment').value = token;
 
-            // This is a placeholder for actual submission.
-            // In a real application, you would send this 'formData' to your backend (e.g., Back4App).
-            console.log('Appointment Request Data:', formData);
+                const appointmentCode = generateAppointmentCode();
+                const formData = {
+                    reason: reason,
+                    appointmentCode: appointmentCode,
+                    timestamp: new Date().toISOString(),
+                    recaptchaToken: token
+                };
 
-            // Simulate API call
-            setTimeout(() => {
-                const isSuccess = Math.random() > 0.1; // Simulate 90% success rate
+                const response = await submitToBack4App(formData, 'appointments');
 
-                if (isSuccess) {
-                    messageDiv.textContent = anonymousContact
-                        ? 'Your anonymous request has been received. Please visit the clinic during operating hours.'
-                        : 'Thank you! We’ll contact you soon regarding your appointment.';
+                if (response.success) {
+                    messageDiv.textContent = `Your anonymous request has been received. Your appointment code is: ${appointmentCode}. Please present this code at the clinic within 24 hours (by ${new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleString()}).`;
                     messageDiv.classList.remove('text-red-500');
                     messageDiv.classList.add('text-green-600');
-                    event.target.reset(); // Clear form on success
-                    toggleContactField(); // Reset contact field state
+                    event.target.reset();
                 } else {
                     messageDiv.textContent = 'Error submitting your request. Please try again.';
                     messageDiv.classList.remove('text-green-600');
                     messageDiv.classList.add('text-red-500');
                 }
+            } catch (error) {
+                messageDiv.textContent = 'Error processing your request. Please try again.';
+                messageDiv.classList.remove('text-green-600');
+                messageDiv.classList.add('text-red-500');
+            }
 
-                setTimeout(() => {
-                    messageDiv.classList.add('hidden');
-                    messageDiv.classList.remove('text-green-600', 'text-red-500');
-                }, 7000); // Keep message longer for clarity
-            }, 1500); // Simulate network delay
+            setTimeout(() => {
+                messageDiv.classList.add('hidden');
+                messageDiv.classList.remove('text-green-600', 'text-red-500');
+            }, 10000);
         }
 
-        // --- Self-Assessment Form Logic ---
-        function submitAssessmentForm(event) {
+        // Handle self-assessment form submission
+        async function submitAssessmentForm(event) {
             event.preventDefault();
-            const symptomsInput = document.getElementById('symptoms').value.trim();
-            const symptoms = symptomsInput.split(',').map(s => s.trim()).filter(s => s);
+            const checkboxes = document.querySelectorAll('input[name="risk-factors"]:checked');
+            const riskFactors = Array.from(checkboxes).map(cb => cb.value);
             const messageDiv = document.getElementById('assessment-message');
-            const symptomsError = document.getElementById('symptoms-error');
+            const assessmentError = document.getElementById('assessment-error');
 
-            symptomsError.classList.add('hidden');
+            console.log('Assessment form submitted. Selected risk factors:', riskFactors);
+
+            assessmentError.classList.add('hidden');
             messageDiv.classList.add('hidden');
 
-            if (symptoms.length === 0) {
-                symptomsError.classList.remove('hidden');
+            if (riskFactors.length === 0) {
+                assessmentError.classList.remove('hidden');
+                messageDiv.classList.remove('hidden');
+                messageDiv.textContent = 'Please select at least one option to assess your risk.';
+                messageDiv.classList.remove('text-green-600');
+                messageDiv.classList.add('text-red-500');
                 return;
             }
 
             messageDiv.classList.remove('hidden');
             messageDiv.textContent = 'Processing your assessment...';
 
-            // This is a placeholder for actual submission.
-            // In a real application, you would send this 'symptoms' data to your backend for a more intelligent triage.
-            console.log('Assessment Symptoms:', symptoms);
+            try {
+                const token = await getRecaptchaToken('assessment');
+                document.getElementById('recaptcha-token-assessment').value = token;
 
-            // Simulate API call for assessment
-            setTimeout(() => {
-                const possibleTriages = [
-                    "We recommend you visit the clinic for a consultation.",
-                    "Your symptoms suggest seeking medical advice. Please visit us or a nearby facility.",
-                    "No immediate red flags based on symptoms. Consider monitoring and reach out if symptoms persist or worsen.",
-                    "Please consult with a healthcare professional for accurate diagnosis."
-                ];
-                const simulatedTriage = possibleTriages[Math.floor(Math.random() * possibleTriages.length)];
+                const formData = { riskFactors, recaptchaToken: token };
 
-                messageDiv.textContent = `Assessment complete: ${simulatedTriage}`;
-                messageDiv.classList.remove('text-red-500');
-                messageDiv.classList.add('text-green-600');
-                event.target.reset(); // Clear form
+                const response = await submitToBack4App(formData, 'assessments');
 
-                setTimeout(() => {
-                    messageDiv.classList.add('hidden');
-                    messageDiv.classList.remove('text-green-600', 'text-red-500');
-                }, 7000); // Keep message longer for clarity
-            }, 1500); // Simulate network delay
-        }
+                if (response.success) {
+                    const recommendation = riskFactors.length > 0
+                        ? 'Based on your responses, we recommend booking an appointment for STI/HIV testing. Use our anonymous appointment form below or visit during operating hours. Our team, including Ms. Jeanette Trinidad, an HIV-proficient Medical Technologist, and Ms. Caroline De Guzman, an LGBT advocate, is here to support you.'
+                        : 'Based on your responses, you may not need an immediate appointment. Continue practicing safe behaviors and consider regular testing.';
 
-        // --- General Contact Form Logic ---
-        function submitContactForm(event) {
-            event.preventDefault();
-            const contactName = document.getElementById('contact-name').value.trim();
-            const contactEmail = document.getElementById('contact-email').value.trim();
-            const contactMessage = document.getElementById('contact-message').value.trim();
-
-            const messageDiv = document.getElementById('contact-message-status');
-            const emailError = document.getElementById('contact-email-error');
-            const messageError = document.getElementById('contact-message-error');
-
-            emailError.classList.add('hidden');
-            messageError.classList.add('hidden');
-            messageDiv.classList.add('hidden');
-
-            let isValid = true;
-
-            if (contactEmail && !validateEmailOrPhone(contactEmail)) { // Optional email, but if provided, must be valid
-                emailError.classList.remove('hidden');
-                isValid = false;
-            }
-            if (!contactMessage) {
-                messageError.classList.remove('hidden');
-                isValid = false;
-            }
-
-            if (!isValid) return;
-
-            messageDiv.classList.remove('hidden');
-            messageDiv.textContent = 'Sending your message...';
-
-            const formData = {
-                name: contactName || 'Anonymous',
-                email: contactEmail || 'Not provided',
-                message: contactMessage
-            };
-
-            console.log('Contact Message Data:', formData);
-
-            // Simulate API call for contact message
-            setTimeout(() => {
-                const isSuccess = Math.random() > 0.1;
-
-                if (isSuccess) {
-                    messageDiv.textContent = contactName ? 'Thank you for your message! We will get back to you soon.' : 'Thank you for your anonymous message!';
+                    messageDiv.textContent = recommendation;
                     messageDiv.classList.remove('text-red-500');
                     messageDiv.classList.add('text-green-600');
                     event.target.reset();
                 } else {
-                    messageDiv.textContent = 'Error sending message. Please try again.';
+                    messageDiv.textContent = 'Error processing assessment. Please try again.';
                     messageDiv.classList.remove('text-green-600');
                     messageDiv.classList.add('text-red-500');
                 }
+            } catch (error) {
+                console.error('Assessment error:', error);
+                messageDiv.textContent = 'Error processing assessment. Please try again or contact the clinic directly.';
+                messageDiv.classList.remove('text-green-600');
+                messageDiv.classList.add('text-red-500');
+            }
 
-                setTimeout(() => {
-                    messageDiv.classList.add('hidden');
-                    messageDiv.classList.remove('text-green-600', 'text-red-500');
-                }, 7000);
-            }, 1500);
+            setTimeout(() => {
+                messageDiv.classList.add('hidden');
+                messageDiv.classList.remove('text-green-600', 'text-red-500');
+            }, 10000);
         }
 
-
+        // Initialize the page
         document.addEventListener('DOMContentLoaded', () => {
             showSection('home');
-            toggleContactField(); // Initialize the state of the contact field based on checkbox
         });
     </script>
 </body>
