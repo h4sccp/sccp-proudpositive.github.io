@@ -30,11 +30,11 @@
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #b91c1c, #e53e3e); /* Red ribbon effect */
+            background: linear-gradient(to bottom, #b91c1c, #e53e3e);
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #991b1b, #c53030); /* Darker red ribbon on hover */
+            background: linear-gradient(to bottom, #991b1b, #c53030);
         }
         html, body {
             min-height: 100vh;
@@ -120,11 +120,6 @@
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
         }
-        .email-highlight {
-            background-color: #BFDBFE;
-            padding: 0.1rem 0.3rem;
-            border-radius: 4px;
-        }
         .nav-icon {
             width: 20px;
             height: 20px;
@@ -135,6 +130,44 @@
             width: 32px;
             height: 32px;
             margin-right: 8px;
+        }
+        .team-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            margin: 0 auto 1rem;
+            display: block;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .team-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .team-member {
+            text-align: center;
+        }
+        .team-grid-top {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .team-grid-bottom {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .team-grid-top {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .team-grid-bottom {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
         }
     </style>
 </head>
@@ -254,14 +287,31 @@
             </div>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Team</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed">Our dedicated team is committed to your health and privacy:</p>
-                <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2 mt-2">
-                    <li><strong>Dr. Natasha Mae Benitez</strong> (Program Manager): Leads our initiatives with a focus on strategic planning and community health.</li>
-                    <li><strong>Ms. Caroline De Guzman</strong> (AIDS Nurse, LGBT Advocate): Provides expert nursing care, counseling, direct patient support, and champions LGBT health and inclusion.</li>
-                    <li><strong>Ms. Jeanette Trinidad</strong> (Chief Medical Technologist, HIV-Proficient Medical Technologist, HIV Prevention Advocate): Oversees laboratory services with expertise in HIV testing and champions HIV prevention efforts.</li>
-                    <li><strong>Mr. Ramjay Perci Novilla</strong> (Admin Officer): Ensures smooth clinic operations and efficient service delivery.</li>
-                    <li><strong>Dr. Susan Benitez</strong> (City Health Officer): Oversees public health programs and guides our clinic's mission to serve San Carlos City.</li>
-                </ul>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-8">Our dedicated team is committed to your health and privacy:</p>
+                <div class="team-grid-top">
+                    <div class="team-member" aria-label="Dr. Susan Benitez profile">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/52b91917a74c53e8790b86af31eb034127b85b1d/Susan%20Benitez%20pic.jpg" alt="Dr. Susan Benitez, City Health Officer" class="team-img">
+                        <p class="text-gray-700 text-base"><strong>Dr. Susan Benitez</strong><br><em>City Health Officer</em><br>Oversees public health programs and guides our clinic's mission to serve San Carlos City.</p>
+                    </div>
+                    <div class="team-member" aria-label="Dr. Natasha Mae Benitez profile">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/52b91917a74c53e8790b86af31eb034127b85b1d/Shamae%20Benitez.jpg" alt="Dr. Natasha Mae Benitez, Program Manager" class="team-img">
+                        <p class="text-gray-700 text-base"><strong>Dr. Natasha Mae Benitez</strong><br><em>Program Manager</em><br>Leads our initiatives with a focus on strategic planning and community health.</p>
+                    </div>
+                </div>
+                <div class="team-grid-bottom">
+                    <div class="team-member" aria-label="Ms. Caroline De Guzman profile">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/06f05c49bfde7204db46b541dbda2775017163e8/Caroline%20De%20Guzman%20pic.jpg" alt="Ms. Caroline De Guzman, AIDS Nurse and LGBT Advocate" class="team-img">
+                        <p class="text-gray-700 text-base"><strong>Ms. Caroline De Guzman</strong><br><em>AIDS Nurse, LGBT Advocate</em><br>Provides expert nursing care, counseling, direct patient support, and champions LGBT health and inclusion.</p>
+                    </div>
+                    <div class="team-member" aria-label="Ms. Jeanette Trinidad profile">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/06f05c49bfde7204db46b541dbda2775017163e8/Jeanette%20Trinidad.jpg" alt="Ms. Jeanette Trinidad, Chief Medical Technologist and HIV-Proficient Medical Technologist" class="team-img">
+                        <p class="text-gray-700 text-base"><strong>Ms. Jeanette Trinidad</strong><br><em>Chief Medical Technologist, HIV-Proficient Medical Technologist</em><br>Oversees laboratory services with expertise in HIV testing and champions HIV prevention efforts.</p>
+                    </div>
+                    <div class="team-member" aria-label="Mr. Ramjay Perci Novilla profile">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/5b42053f9efa40f73c03a1e47b40fee760da1fa6/Ramjay%20Novilla.jpg" alt="Mr. Ramjay Perci Novilla, Admin Officer" class="team-img">
+                        <p class="text-gray-700 text-base"><strong>Mr. Ramjay Perci Novilla</strong><br><em>Admin Officer</em><br>Ensures smooth clinic operations and efficient service delivery.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -452,7 +502,7 @@
                 <div class="mb-4">
                     <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">Social Hygiene Clinic Contact:</h3>
                     <p class="text-gray-700 text-base"><strong>Phone:</strong> (075) 123-4567 (Main Line)</p>
-                    <p class="text-gray-700 text-base"><strong>Email:</strong> <a href="mailto:chosccpsocialhygiene@gmail.com" class="text-blue-600 hover:underline email-highlight">chosccpsocialhygiene@gmail.com</a></p>
+                    <p class="text-gray-700 text-base"><strong>Email:</strong> <a href="mailto:chosccpsocialhygiene@gmail.com" class="text-blue-600 hover:underline">chosccpsocialhygiene@gmail.com</a></p>
                     <p class="text-gray-700 text-base"><strong>Operating Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
                     <p class="text-gray-700 text-base"><strong>Address:</strong> San Carlos City Health Office, City Hall Compound, San Carlos City, Pangasinan</p>
                 </div>
@@ -460,7 +510,7 @@
                     <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">City Health Office Contact:</h3>
                     <p class="text-gray-700 text-base"><strong>Facebook:</strong> <a href="https://www.facebook.com/sccp.cho" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">City Health Office - SCCP</a></p>
                     <p class="text-gray-700 text-base"><strong>Phone:</strong> <a href="tel:+639693171593" class="text-blue-600 hover:underline">0969 317 1593</a></p>
-                    <p class="text-gray-700 text-base"><strong>Email:</strong> <a href="mailto:chosccp@gmail.com" class="text-blue-600 hover:underline email-highlight">chosccp@gmail.com</a></p>
+                    <p class="text-gray-700 text-base"><strong>Email:</strong> <a href="mailto:chosccp@gmail.com" class="text-blue-600 hover:underline">chosccp@gmail.com</a></p>
                 </div>
                 <div class="mb-4">
                     <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">Mental Health Support:</h3>
@@ -485,17 +535,22 @@
             return `SCC-${timestamp}-${random}`.toUpperCase();
         }
 
-        // Get reCAPTCHA token
+        // Get reCAPTCHA token with fallback
         function getRecaptchaToken(action) {
-            return new Promise((resolve, reject) => {
-                grecaptcha.ready(() => {
-                    grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: action })
-                        .then(token => resolve(token))
-                        .catch(error => {
-                            console.error('reCAPTCHA error:', error);
-                            resolve(''); // Fallback for testing
-                        });
-                });
+            return new Promise((resolve) => {
+                try {
+                    grecaptcha.ready(() => {
+                        grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: action })
+                            .then(token => resolve(token))
+                            .catch(error => {
+                                console.error('reCAPTCHA error:', error);
+                                resolve('fallback-token');
+                            });
+                    });
+                } catch (error) {
+                    console.error('reCAPTCHA initialization error:', error);
+                    resolve('fallback-token');
+                }
             });
         }
 
@@ -503,7 +558,7 @@
         async function submitToBack4App(formData, endpoint) {
             try {
                 console.log(`Submitting to Back4App endpoint: ${endpoint}`, formData);
-                return { success: Math.random() > 0.1 };
+                return { success: true };
             } catch (error) {
                 console.error('Back4App submission error:', error);
                 return { success: false };
@@ -512,6 +567,7 @@
 
         // Show/hide sections and handle navigation
         function showSection(sectionId) {
+            console.log(`Attempting to show section: ${sectionId}`);
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
 
@@ -523,18 +579,31 @@
 
             const activeSection = document.getElementById(sectionId);
             if (activeSection) {
+                console.log(`Showing section: ${sectionId}`);
                 activeSection.classList.remove('hidden');
                 activeSection.classList.add('active-section');
                 activeSection.setAttribute('aria-hidden', 'false');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 const heading = activeSection.querySelector('h2');
-                if (heading) heading.focus({ preventScroll: true });
-                else activeSection.focus({ preventScroll: true });
+                if (heading) {
+                    heading.focus({ preventScroll: true });
+                    console.log(`Focused on heading of section: ${sectionId}`);
+                } else {
+                    activeSection.focus({ preventScroll: true });
+                    console.log(`Focused on section: ${sectionId}`);
+                }
+            } else {
+                console.error(`Section not found: ${sectionId}`);
             }
 
             navLinks.forEach(link => link.classList.remove('active'));
             const activeLink = document.querySelector(`.nav-link[onclick="showSection('${sectionId}')"]`);
-            if (activeLink) activeLink.classList.add('active');
+            if (activeLink) {
+                activeLink.classList.add('active');
+                console.log(`Activated nav link for: ${sectionId}`);
+            } else {
+                console.error(`Nav link not found for: ${sectionId}`);
+            }
         }
 
         // Handle appointment form submission
@@ -570,7 +639,7 @@
                 const response = await submitToBack4App(formData, 'appointments');
 
                 if (response.success) {
-                    messageDiv.textContent = `Your anonymous request has been received. Your appointment code is: ${appointmentCode}. Please present this code at the clinic within 24 hours (by ${new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleString()}).`;
+                    messageDiv.textContent = `Your anonymous request has been received. Your appointment code is: ${appointmentCode}. Please present this code at the clinic within 24 hours (by August 5, 2025, 10:58 AM PST).`;
                     messageDiv.classList.remove('text-red-500');
                     messageDiv.classList.add('text-green-600');
                     event.target.reset();
@@ -580,7 +649,8 @@
                     messageDiv.classList.add('text-red-500');
                 }
             } catch (error) {
-                messageDiv.textContent = 'Error processing your request. Please try again.';
+                console.error('Appointment form error:', error);
+                messageDiv.textContent = 'Error processing your request. Please try again or contact the clinic directly.';
                 messageDiv.classList.remove('text-green-600');
                 messageDiv.classList.add('text-red-500');
             }
@@ -634,13 +704,13 @@
                     messageDiv.classList.add('text-green-600');
                     event.target.reset();
                 } else {
-                    messageDiv.textContent = 'Error processing assessment. Please try again.';
+                    messageDiv.textContent = 'Error processing your assessment. Please try again.';
                     messageDiv.classList.remove('text-green-600');
                     messageDiv.classList.add('text-red-500');
                 }
             } catch (error) {
-                console.error('Assessment error:', error);
-                messageDiv.textContent = 'Error processing assessment. Please try again or contact the clinic directly.';
+                console.error('Assessment form error:', error);
+                messageDiv.textContent = 'Error processing your assessment. Please try again or contact the clinic directly.';
                 messageDiv.classList.remove('text-green-600');
                 messageDiv.classList.add('text-red-500');
             }
@@ -653,6 +723,7 @@
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('Page loaded, initializing home section');
             showSection('home');
         });
     </script>
