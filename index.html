@@ -18,219 +18,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8;
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e2e8f0;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #ff6b6b, #4ecdc4, #45b7d1);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #ff8787, #6be7de, #6bc4e0);
-        }
-        html, body {
-            min-height: 100vh;
-        }
-        #content-area {
-            min-height: calc(100vh - 128px);
-            opacity: 1;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .hidden {
-            display: none;
-            opacity: 0;
-        }
-        .active-section {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        .nav-link.active {
-            border-bottom: 2px solid white;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #ff6b6b, #4ecdc4, #45b7d1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, #ff8787, #6be7de, #6bc4e0); }
+        html, body { min-height: 100vh; }
+        #content-area { min-height: calc(100vh - 128px); opacity: 1; transition: opacity 0.3s ease-in-out; }
+        .hidden { display: none; opacity: 0; }
+        .active-section { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .nav-link.active { border-bottom: 2px solid white; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #1f2937;
-                color: #f3f4f6;
-            }
-            #content-area {
-                background-color: #374151;
-            }
+            body { background-color: #1f2937; color: #f3f4f6; }
+            #content-area { background-color: #374151; }
         }
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px; /* Increased gap to prevent overlap */
-        }
-        .logo-img {
-            max-width: 80px;
-            height: auto;
-            object-fit: contain; /* Ensure clean image scaling */
-            border-radius: 4px; /* Smooth edges to reduce artifacts */
-        }
-        .centered-title {
-            text-align: center;
-            flex-grow: 1;
-        }
-        .rainbow-text {
-            background: linear-gradient(to right, #FF9999, #FFFF99, #99CC99, #99CCFF, #CC99CC);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: bold;
-            display: inline;
-        }
-        .lowered-text {
-            margin-top: 20px;
-        }
-        .stacked-title {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .cta-banner {
-            background: linear-gradient(to right, #ff6b6b, #ffcc99, #99cc99, #99ccff, #cc99cc);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-        .yes-no-label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        .yes-no-label input {
-            margin-right: 0.5rem;
-        }
-        .initiatives-title {
-            background: linear-gradient(to right, #E9D5FF, #CC99CC);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-        }
-        .nav-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-        .section-icon {
-            width: 32px;
-            height: 32px;
-            margin-right: 8px;
-        }
-        .team-img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 8px;
-            border: 2px solid #e5e7eb;
-            margin: 0 auto 1rem;
-            display: block;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .team-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .team-member {
-            text-align: center;
-        }
-        .team-grid-top {
-            display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .team-grid-bottom {
-            display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr));
-            gap: 1.5rem;
-        }
+        .header-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { max-width: 80px; height: auto; object-fit: contain; border-radius: 4px; }
+        .centered-title { text-align: center; flex-grow: 1; }
+        .rainbow-text { background: linear-gradient(to right, #FF9999, #FFFF99, #99CC99, #99CCFF, #CC99CC); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; display: inline; }
+        .lowered-text { margin-top: 20px; }
+        .stacked-title { display: flex; flex-direction: column; align-items: center; }
+        .cta-banner { background: linear-gradient(to right, #ff6b6b, #ffcc99, #99cc99, #99ccff, #cc99cc); color: white; padding: 1rem; text-align: center; border-radius: 8px; margin-bottom: 1rem; position: relative; }
+        .yes-no-label { display: flex; align-items: center; margin-bottom: 0.5rem; }
+        .yes-no-label input { margin-right: 0.5rem; }
+        .initiatives-title { background: linear-gradient(to right, #E9D5FF, #CC99CC); padding: 0.25rem 0.5rem; border-radius: 4px; }
+        .nav-icon { width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; }
+        .section-icon { width: 32px; height: 32px; margin-right: 8px; }
+        .team-img { width: 120px; height: 120px; object-fit: cover; object-position: center; border-radius: 8px; border: 2px solid #e5e7eb; margin: 0 auto 1rem; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .team-img:hover { transform: scale(1.05); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .team-member { text-align: center; }
+        .team-grid-top { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+        .team-grid-bottom { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; }
         @media (min-width: 640px) {
-            .team-grid-top {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-            .team-grid-bottom {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
+            .team-grid-top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .team-grid-bottom { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-        }
-        .modal-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .hero-banner {
-            background: linear-gradient(to right, #ff6b6b, #ffcc99, #99cc99, #99ccff, #cc99cc);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-        .social-share {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-        .social-share a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            color: #1f2937;
-            transition: background-color 0.3s;
-        }
-        .social-share a:hover {
-            background-color: #e5e7eb;
-        }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000; }
+        .modal-content { background-color: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; }
+        .modal-close { position: absolute; top: 10px; right: 10px; font-size: 1.5rem; cursor: pointer; }
+        .hero-banner { background: linear-gradient(to right, #ff6b6b, #ffcc99, #99cc99, #99ccff, #cc99cc); color: white; padding: 2rem; text-align: center; border-radius: 8px; margin-bottom: 2rem; }
+        .social-share { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; }
+        .social-share a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #ffffff; color: #1f2937; transition: background-color 0.3s; }
+        .social-share a:hover { background-color: #e5e7eb; }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -281,7 +112,7 @@
                     </li>
                     <li>
                         <a href="#" onclick="showSection('resources')" class="nav-link hover:text-white transition duration-300 flex items-center">
-                            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path></svg>
+                            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path></svg>
                             Resources
                         </a>
                     </li>
@@ -529,7 +360,7 @@
 
         <section id="resources" class="hidden">
             <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
-                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path></svg>
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path></svg>
                 Important Guidelines & Resources
             </h2>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
@@ -628,41 +459,38 @@
     </footer>
 
     <script>
-        // Generate a unique code
+        // ========= CONFIG: point to your FastAPI backend =========
+        const BASE_URL = "http://127.0.0.1:9000"; // change when deployed
+
+        // ========= Helpers =========
         function generateCode(prefix) {
             const timestamp = Date.now();
             const random = Math.random().toString(36).substr(2, 9);
             return `${prefix}-${timestamp}-${random}`.toUpperCase();
         }
 
-        // Get reCAPTCHA token
         function getRecaptchaToken(action) {
             return new Promise((resolve) => {
                 try {
                     grecaptcha.ready(() => {
                         grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: action })
                             .then(token => resolve(token))
-                            .catch(error => {
-                                console.error('reCAPTCHA error:', error);
-                                resolve('fallback-token');
-                            });
+                            .catch(() => resolve('fallback-token'));
                     });
-                } catch (error) {
-                    console.error('reCAPTCHA initialization error:', error);
+                } catch {
                     resolve('fallback-token');
                 }
             });
         }
 
-        // Simulate Back4App submission
-        async function submitToBack4App(formData, endpoint) {
-            try {
-                console.log(`Submitting to Back4App endpoint: ${endpoint}`, formData);
-                return { success: true };
-            } catch (error) {
-                console.error('Back4App submission error:', error);
-                return { success: false };
-            }
+        async function apiPost(path, data) {
+            const res = await fetch(`${BASE_URL}${path}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data || {})
+            });
+            if (!res.ok) throw new Error(`POST ${path} failed: ${res.status}`);
+            return res.json();
         }
 
         // Show/hide sections
@@ -683,7 +511,7 @@
                 activeSection.setAttribute('aria-hidden', 'false');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 const heading = activeSection.querySelector('h2');
-                heading ? heading.focus({ preventScroll: true }) : activeSection.focus({ preventScroll: true });
+                if (heading) heading.setAttribute('tabindex', '-1');
             }
 
             navLinks.forEach(link => link.classList.remove('active'));
@@ -703,7 +531,7 @@
             modal.style.display = 'none';
         }
 
-        // Handle appointment form
+        // Handle appointment form -> POST /api/appointments
         async function submitAppointmentForm(event) {
             event.preventDefault();
             const reason = document.getElementById('appointment-reason').value.trim();
@@ -726,25 +554,15 @@
                 document.getElementById('recaptcha-token-appointment').value = token;
 
                 const appointmentCode = generateCode('SCC');
-                const formData = {
-                    reason: reason,
-                    appointmentCode: appointmentCode,
-                    timestamp: new Date().toISOString(),
-                    recaptchaToken: token
-                };
+                await apiPost('/api/appointments', {
+                    name: `Anon (${appointmentCode})`,
+                    time: new Date().toISOString()
+                });
 
-                const response = await submitToBack4App(formData, 'appointments');
-
-                if (response.success) {
-                    messageDiv.textContent = `Your anonymous request has been received. Your appointment code is: ${appointmentCode}. Present this code at the clinic within 24 hours (by August 28, 2025, 1:21 PM PST).`;
-                    messageDiv.classList.remove('text-red-500');
-                    messageDiv.classList.add('text-green-600');
-                    event.target.reset();
-                } else {
-                    messageDiv.textContent = 'Error submitting your request. Please try again.';
-                    messageDiv.classList.remove('text-green-600');
-                    messageDiv.classList.add('text-red-500');
-                }
+                messageDiv.textContent = `Your anonymous request has been received. Your appointment code is: ${appointmentCode}. Present this code at the clinic within 24 hours.`;
+                messageDiv.classList.remove('text-red-500');
+                messageDiv.classList.add('text-green-600');
+                event.target.reset();
             } catch (error) {
                 console.error('Appointment form error:', error);
                 messageDiv.textContent = 'Error processing your request. Please try again or contact the clinic.';
@@ -758,7 +576,7 @@
             }, 10000);
         }
 
-        // Handle self-assessment form
+        // Handle self-assessment form -> POST /api/assessments
         async function submitAssessmentForm(event) {
             event.preventDefault();
             const checkboxes = document.querySelectorAll('input[name="risk-factors"]:checked');
@@ -785,24 +603,20 @@
                 const token = await getRecaptchaToken('assessment');
                 document.getElementById('recaptcha-token-assessment').value = token;
 
-                const formData = { riskFactors, recaptchaToken: token };
+                await apiPost('/api/assessments', {
+                    patient_id: "anon",
+                    score: riskFactors.length,
+                    notes: riskFactors.join(',')
+                });
 
-                const response = await submitToBack4App(formData, 'assessments');
+                const recommendation = riskFactors.length > 0
+                    ? 'Based on your responses, we recommend booking an appointment for STI/HIV testing. Our Proud and Positive team, including Ms. Caroline De Guzman, an LGBT advocate, is here to provide inclusive, stigma-free care.'
+                    : 'You may not need an immediate appointment, but continue practicing safe behaviors. Join our Proud and Positive events for ongoing education!';
 
-                if (response.success) {
-                    const recommendation = riskFactors.length > 0
-                        ? 'Based on your responses, we recommend booking an appointment for STI/HIV testing. Our Proud and Positive team, including Ms. Caroline De Guzman, an LGBT advocate, is here to provide inclusive, stigma-free care.'
-                        : 'You may not need an immediate appointment, but continue practicing safe behaviors. Join our Proud and Positive events for ongoing education!';
-
-                    messageDiv.textContent = recommendation;
-                    messageDiv.classList.remove('text-red-500');
-                    messageDiv.classList.add('text-green-600');
-                    event.target.reset();
-                } else {
-                    messageDiv.textContent = 'Error processing your assessment. Please try again.';
-                    messageDiv.classList.remove('text-green-600');
-                    messageDiv.classList.add('text-red-500');
-                }
+                messageDiv.textContent = recommendation;
+                messageDiv.classList.remove('text-red-500');
+                messageDiv.classList.add('text-green-600');
+                event.target.reset();
             } catch (error) {
                 console.error('Assessment form error:', error);
                 messageDiv.textContent = 'Error processing your assessment. Please try again or contact the clinic.';
@@ -816,7 +630,7 @@
             }, 10000);
         }
 
-        // Handle event registration form
+        // Handle event registration form -> POST /api/event_registrations
         async function submitEventRegistration(event) {
             event.preventDefault();
             const eventName = document.getElementById('event-name').value;
@@ -832,28 +646,17 @@
                 document.getElementById('recaptcha-token-event').value = token;
 
                 const registrationCode = generateCode('EVENT');
-                const formData = {
-                    eventName,
-                    participantName: participantName || 'Anonymous',
-                    participantEmail: participantEmail || 'N/A',
-                    registrationCode,
-                    timestamp: new Date().toISOString(),
-                    recaptchaToken: token
-                };
+                await apiPost('/api/event_registrations', {
+                    name: participantName || "Anonymous",
+                    event: eventName,
+                    contact: participantEmail || ""
+                });
 
-                const response = await submitToBack4App(formData, 'event_registrations');
-
-                if (response.success) {
-                    messageDiv.textContent = `Thank you for registering for ${eventName}! Your registration code is: ${registrationCode}. We’ll follow up with details soon.`;
-                    messageDiv.classList.remove('text-red-500');
-                    messageDiv.classList.add('text-green-600');
-                    event.target.reset();
-                    setTimeout(() => closeModal('proud-positive-modal'), 5000);
-                } else {
-                    messageDiv.textContent = 'Error processing your registration. Please try again.';
-                    messageDiv.classList.remove('text-green-600');
-                    messageDiv.classList.add('text-red-500');
-                }
+                messageDiv.textContent = `Thank you for registering for ${eventName}! Your registration code is: ${registrationCode}. We’ll follow up with details soon.`;
+                messageDiv.classList.remove('text-red-500');
+                messageDiv.classList.add('text-green-600');
+                event.target.reset();
+                setTimeout(() => closeModal('proud-positive-modal'), 5000);
             } catch (error) {
                 console.error('Event registration error:', error);
                 messageDiv.textContent = 'Error processing your registration. Please try again or contact the clinic.';
@@ -873,7 +676,6 @@
             const images = document.querySelectorAll('img');
             images.forEach(img => {
                 img.addEventListener('error', () => {
-                    console.warn(`Failed to load image: ${img.src}`);
                     if (!img.src.includes('via.placeholder.com')) {
                         img.src = 'https://via.placeholder.com/80?text=Image+Not+Found';
                         img.alt = 'Fallback Image';
