@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="San Carlos City Social Hygiene Clinic promotes health, inclusivity, and STI/HIV prevention through the Proud and Positive movement, offering testing, counseling, and community-driven care.">
-    <meta name="keywords" content="San Carlos City, Social Hygiene Clinic, STI, HIV, Proud and Positive, LGBTQ+ health, health services, testing, counseling, anonymous, appointment, community health">
+    <meta name="description" content="San Carlos City Social Hygiene Clinic promotes health, inclusivity, and STI/HIV prevention through the Proud and Positive movement.">
+    <meta name="keywords" content="San Carlos City, Social Hygiene Clinic, STI, HIV, Proud and Positive, LGBTQ+ health, testing, counseling">
     <meta property="og:title" content="San Carlos City Social Hygiene Clinic - Proud and Positive">
-    <meta property="og:description" content="Join the Proud and Positive movement for inclusive, stigma-free healthcare in San Carlos City.">
+    <meta property="og:description" content="Join the Proud and Positive movement for inclusive, stigma-free healthcare.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sccp-socialhygienecho.github.io">
     <meta property="og:image" content="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/main/proud-positive-logo.png">
@@ -16,21 +16,73 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <!-- reCAPTCHA v3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LcWxAksAAAAAKGjpjanQFZYHlGhZ_4xGnfF0eS-"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
+        /* === 100% STABLE LAYOUT — NO SHAKE === */
+        html, body { 
+            margin: 0; padding: 0; 
+            min-height: 100vh; 
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+        }
+        body { 
+            background-color: #f0f4f8; 
+            display: flex; 
+            flex-direction: column;
+        }
+
+        /* === KILL reCAPTCHA BADGE JITTER === */
+        .grecaptcha-badge {
+            width: 256px !important;
+            height: 60px !important;
+            position: fixed !important;
+            bottom: 15px !important;
+            right: 15px !important;
+            z-index: -9999 !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            transition: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Reserve space to prevent jump */
+        body::after {
+            content: '';
+            display: block;
+            height: 80px;
+            width: 256px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            pointer-events: none;
+        }
+
+        /* Prevent image shift */
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            background: #f3f4f6;
+            object-fit: contain;
+        }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #ff6b6b, #4ecdc4, #45b7d1); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, #ff8787, #6be7de, #6bc4e0); }
-        html, body { min-height: 100vh; }
-        #content-area { min-height: calc(100vh - 128px); opacity: 1; transition: opacity 0.3s ease-in-out; }
-        .hidden { display: none; opacity: 0; }
+
+        #content-area { 
+            min-height: calc(100vh - 128px); 
+            opacity: 1; 
+            transition: opacity 0.3s ease-in-out; 
+        }
+        .hidden { display: none !important; }
         .active-section { display: block; animation: fadeIn 0.5s ease-in-out; }
         .nav-link.active { border-bottom: 2px solid white; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -45,48 +97,39 @@
 
         .header-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
         .logo-container { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-        .logo-img { max-width: 80px; height: auto; object-fit: contain; border-radius: 4px; }
+        .logo-img { 
+            max-width: 80px; 
+            height: auto; 
+            object-fit: contain; 
+            border-radius: 4px; 
+            background: #fff; 
+            padding: 4px; 
+            border: 1px solid #e5e7eb; 
+        }
         .centered-title { text-align: center; flex-grow: 1; }
         .rainbow-text { background: linear-gradient(to right, #FF9999, #FFFF99, #99CC99, #99CCFF, #CC99CC); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; }
         .stacked-title { display: flex; flex-direction: column; align-items: center; }
-        .cta-banner, .hero-banner { background: linear-gradient(to right, #ff6b6b, #ffcc99, #99cc99, #99ccff, #cc99cc); color: white; padding: 1rem; text-align: center; border-radius: 8px; margin-bottom: 1rem; }
-        .yes-no-label { display: flex; align-items: center; margin-bottom: 0.5rem; }
-        .yes-no-label input { margin-right: 0.5rem; }
-        .initiatives-title { background: linear-gradient(to right, #E9D5FF, #CC99CC); padding: 0.25rem 0.5rem; border-radius: 4px; }
+        .hero-banner { background: linear-gradient(to right, #ff6b6b, #ffcc99, #99cc99, #99ccff, #cc99cc); color: white; padding: 1rem; text-align: center; border-radius: 8px; margin-bottom: 1rem; }
         .nav-icon { width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; }
         .section-icon { width: 32px; height: 32px; margin-right: 8px; }
-        .team-img { width: 120px; height: 120px; object-fit: cover; object-position: center; border-radius: 8px; border: 2px solid #e5e7eb; margin: 0 auto 1rem; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
-        .team-img:hover { transform: scale(1.05); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-        .team-member { text-align: center; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; min-height: 300px; }
+        .modal-close { position: absolute; top: 10px; right: 10px; font-size: 1.5rem; cursor: pointer; color: #666; }
+        .modal-close:hover { color: #000; }
+        .team-img { width: 120px; height: 120px; object-fit: cover; border-radius: 8px; border: 2px solid #e5e7eb; margin: 0 auto 1rem; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .team-img:hover { transform: scale(1.05); }
         .team-grid-top { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
         .team-grid-bottom { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; }
         @media (min-width: 640px) {
             .team-grid-top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .team-grid-bottom { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000; }
-        .modal.active { display: flex; }
-        .modal-content { background-color: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; min-height: 300px; }
-        .modal-close { position: absolute; top: 10px; right: 10px; font-size: 1.5rem; cursor: pointer; color: #666; }
-        .modal-close:hover { color: #000; }
         .social-share { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; }
-        .social-share a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #ffffff; color: #1f2937; transition: background-color 0.3s; }
-        .social-share a:hover { background-color: #e5e7eb; }
-
-        /* === FIX SHAKING: HIDE reCAPTCHA BADGE === */
-        .grecaptcha-badge {
-            opacity: 0 !important;
-            pointer-events: none !important;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-        .grecaptcha-badge:hover {
-            opacity: 0.7 !important;
-        }
-
-        /* Prevent layout shift */
-        html { scroll-behavior: smooth; }
-        img, iframe, video { display: block; max-width: 100%; }
+        .social-share a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #fff; color: #1f2937; transition: background 0.3s; }
+        .social-share a:hover { background: #e5e7eb; }
+        .yes-no-label { display: flex; align-items: center; margin-bottom: 0.5rem; }
+        .yes-no-label input { margin-right: 0.5rem; }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -94,9 +137,17 @@
         <div class="container mx-auto">
             <div class="header-content">
                 <div class="logo-container">
-                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/main/CHO%20logo.png" alt="CHO Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/80?text=CHO';">
-                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/f4e4accb133b9ad41ce68768509e352f41a04629/4405.jpg" alt="Clinic Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/80?text=Clinic';">
-                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/main/proud-positive-logo.png" alt="Proud and Positive" class="logo-img" onerror="this.src='https://via.placeholder.com/80?text=P+';">
+                    <!-- CHO Logo -->
+                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/5a0eb550f33c8bb91c4c48a0da47e58c34fe5215/CHO%20logo.png" 
+                         alt="CHO Logo" class="logo-img" loading="lazy">
+                    
+                    <!-- Clinic Logo (4405.jpg) -->
+                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/5a0eb550f33c8bb91c4c48a0da47e58c34fe5215/4405.jpg" 
+                         alt="Social Hygiene Clinic Logo" class="logo-img" loading="lazy">
+
+                    <!-- Proud and Positive Logo -->
+                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/main/proud-positive-logo.png" 
+                         alt="Proud and Positive Logo" class="logo-img" loading="lazy">
                 </div>
                 <div class="centered-title">
                     <div class="stacked-title">
@@ -108,7 +159,9 @@
                         </h1>
                     </div>
                 </div>
-                <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/c9109d91b12eab89575bc2632a5ab566d93c6d26/SCCP%20seal.jpg" alt="City Seal" class="logo-img" onerror="this.src='https://via.placeholder.com/80?text=Seal';">
+                <!-- City Seal -->
+                <img src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/5a0eb550f33c8bb91c4c48a0da47e58c34fe5215/SCCP%20seal.jpg" 
+                     alt="San Carlos City Seal" class="logo-img" loading="lazy">
             </div>
             <nav aria-label="Main navigation" class="mt-4">
                 <ul class="flex flex-wrap justify-center space-x-4 md:space-x-6 text-base md:text-lg">
@@ -171,32 +224,32 @@
             </div>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Philosophy</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed">At the San Carlos City Social Hygiene Clinic, we embody the Proud and Positive spirit by providing compassionate, non-judgmental care. We believe everyone deserves access to quality health services in a safe, inclusive environment. Our holistic approach—through initiatives like the Pride Parade and Parol ng Pag-asa—focuses on prevention, treatment, and community empowerment, breaking down stigma and fostering trust.</p>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">At the San Carlos City Social Hygiene Clinic, we embody the Proud and Positive spirit by providing compassionate, non-judgmental care. We believe everyone deserves access to quality health services in a safe, inclusive environment.</p>
             </div>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Our Team</h3>
                 <div class="team-grid-top">
-                    <div class="team-member">
-                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/52b91917a74c53e8790b86af31eb034127b85b1d/Susan%20Benitez%20pic.jpg" alt="Dr. Susan Benitez" class="team-img" onerror="this.src='https://via.placeholder.com/120?text=Photo';">
-                        <p class="text-gray-700 text-base"><strong>Dr. Susan Benitez</strong><br><em>City Health Officer</em><br>Guides our clinic’s mission to deliver inclusive public health programs.</p>
+                    <div class="text-center">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/52b91917a74c53e8790b86af31eb034127b85b1d/Susan%20Benitez%20pic.jpg" alt="Dr. Susan Benitez" class="team-img" loading="lazy">
+                        <p class="text-gray-700 text-base"><strong>Dr. Susan Benitez</strong><br><em>City Health Officer</em></p>
                     </div>
-                    <div class="team-member">
-                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/52b91917a74c53e8790b86af31eb034127b85b1d/Shamae%20Benitez.jpg" alt="Dr. Natasha Mae Benitez" class="team-img" onerror="this.src='https://via.placeholder.com/120?text=Photo';">
-                        <p class="text-gray-700 text-base"><strong>Dr. Natasha Mae Benitez</strong><br><em>Program Manager</em><br>Leads the Proud and Positive campaign, driving strategic community health initiatives.</p>
+                    <div class="text-center">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/52b91917a74c53e8790b86af31eb034127b85b1d/Shamae%20Benitez.jpg" alt="Dr. Natasha Mae Benitez" class="team-img" loading="lazy">
+                        <p class="text-gray-700 text-base"><strong>Dr. Natasha Mae Benitez</strong><br><em>Program Manager</em></p>
                     </div>
                 </div>
                 <div class="team-grid-bottom">
-                    <div class="team-member">
-                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/06f05c49bfde7204db46b541dbda2775017163e8/Caroline%20De%20Guzman%20pic.jpg" alt="Ms. Caroline De Guzman" class="team-img" onerror="this.src='https://via.placeholder.com/120?text=Photo';">
-                        <p class="text-gray-700 text-base"><strong>Ms. Caroline De Guzman</strong><br><em>AIDS Nurse, LGBT Advocate</em><br>Champions inclusive care and supports the Pride Parade and HOPE Ambassadors.</p>
+                    <div class="text-center">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/06f05c49bfde7204db46b541dbda2775017163e8/Caroline%20De%20Guzman%20pic.jpg" alt="Ms. Caroline De Guzman" class="team-img" loading="lazy">
+                        <p class="text-gray-700 text-base"><strong>Ms. Caroline De Guzman</strong><br><em>AIDS Nurse, LGBT Advocate</em></p>
                     </div>
-                    <div class="team-member">
-                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/06f05c49bfde7204db46b541dbda2775017163e8/Jeanette%20Trinidad.jpg" alt="Ms. Jeanette Trinidad" class="team-img" onerror="this.src='https://via.placeholder.com/120?text=Photo';">
-                        <p class="text-gray-700 text-base"><strong>Ms. Jeanette Trinidad</strong><br><em>Chief Medical Technologist</em><br>Oversees HIV testing with expertise, supporting our stigma-free mission.</p>
+                    <div class="text-center">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/06f05c49bfde7204db46b541dbda2775017163e8/Jeanette%20Trinidad.jpg" alt="Ms. Jeanette Trinidad" class="team-img" loading="lazy">
+                        <p class="text-gray-700 text-base"><strong>Ms. Jeanette Trinidad</strong><br><em>Chief Medical Technologist</em></p>
                     </div>
-                    <div class="team-member">
-                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/5b42053f9efa40f73c03a1e47b40fee760da1fa6/Ramjay%20Novilla.jpg" alt="Mr. Ramjay Perci Novilla" class="team-img" onerror="this.src='https://via.placeholder.com/120?text=Photo';">
-                        <p class="text-gray-700 text-base"><strong>Mr. Ramjay Perci Novilla</strong><br><em>Admin Officer</em><br>Ensures seamless operations for our community-focused initiatives.</p>
+                    <div class="text-center">
+                        <img src="https://raw.githubusercontent.com/h4sccp/sccp-socialhygienecho.github.io/5b42053f9efa40f73c03a1e47b40fee760da1fa6/Ramjay%20Novilla.jpg" alt="Mr. Ramjay Perci Novilla" class="team-img" loading="lazy">
+                        <p class="text-gray-700 text-base"><strong>Mr. Ramjay Perci Novilla</strong><br><em>Admin Officer</em></p>
                     </div>
                 </div>
             </div>
@@ -230,13 +283,12 @@
             </div>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
                 <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Breaking Stigma with Proud and Positive</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed">Stigma shouldn’t stop you from seeking care. Our Proud and Positive campaign, including the 2024 Pride Parade and youth advocacy, creates a welcoming space for all.</p>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">Stigma shouldn’t stop you from seeking care. Our Proud and Positive campaign creates a welcoming space for all.</p>
                 <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2 mt-2">
                     <li><strong>Confidentiality:</strong> Your privacy is guaranteed in all services.</li>
                     <li><strong>Inclusive Care:</strong> We serve everyone with compassion, celebrating diversity.</li>
                     <li><strong>Community Advocacy:</strong> Join our events like Parol ng Pag-asa to fight stigma through education and celebration.</li>
                 </ul>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed mt-4">Learn more or join our movement via our <a href="#" onclick="showSection('contact-us')" class="text-blue-600 hover:underline">contact page</a>.</p>
             </div>
         </section>
 
@@ -247,7 +299,6 @@
                 Our Services
             </h2>
             <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-                <!-- SELF-ASSESSMENT -->
                 <div class="bg-yellow-50 p-4 md:p-6 rounded-lg shadow-md">
                     <h3 class="text-xl md:text-2xl font-semibold text-yellow-700 mb-4">Self-Assessment Tool</h3>
                     <p class="text-gray-700 text-base mb-4">Check your risk for STI/HIV with our inclusive assessment:</p>
@@ -259,21 +310,18 @@
                             <div class="yes-no-label"><input type="checkbox" id="q4" name="risk-factors" value="shared-needles"><label for="q4" class="text-gray-700 text-sm">Shared needles?</label></div>
                             <div class="yes-no-label"><input type="checkbox" id="q5" name="risk-factors" value="hiv-partner"><label for="q5" class="text-gray-700 text-sm">Partner with HIV or unknown status?</label></div>
                             <div class="yes-no-label"><input type="checkbox" id="q6" name="risk-factors" value="lgbtq-risk"><label for="q6" class="text-gray-700 text-sm">LGBTQ+ seeking tailored guidance?</label></div>
-                            <p id="assessment-error" class="text-red-500 text-sm hidden">Please select at least one.</p>
                         </div>
                         <button type="submit" class="bg-yellow-600 text-white px-6 py-2 rounded-full hover:bg-yellow-700">Check Results</button>
                     </form>
-                    <div id="assessment-message" class="mt-4 text-center hidden font-semibold" role="alert"></div>
+                    <div id="assessment-message" class="mt-4 text-center hidden" role="alert"></div>
                 </div>
 
-                <!-- APPOINTMENT -->
                 <div class="bg-green-50 p-4 md:p-6 rounded-lg shadow-md">
                     <h3 class="text-xl md:text-2xl font-semibold text-green-700 mb-4">Request Appointment (Anonymous)</h3>
                     <form onsubmit="submitAppointmentForm(event)" novalidate>
                         <div class="mb-6">
                             <label for="appointment-reason" class="block text-gray-700 text-sm font-bold mb-2">Reason:</label>
                             <textarea id="appointment-reason" rows="3" class="shadow border rounded w-full py-2 px-3" required></textarea>
-                            <p id="appointment-reason-error" class="text-red-500 text-sm hidden">Required.</p>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Choose Date:</label>
@@ -285,55 +333,6 @@
                     </form>
                     <div id="appointment-message" class="mt-4 text-center hidden" role="alert"></div>
                 </div>
-
-                <!-- INITIATIVES -->
-                <div class="bg-purple-50 p-4 md:p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl md:text-2xl font-semibold text-purple-700 mb-4 initiatives-title">Proud and Positive Initiatives</h3>
-                    <p class="text-gray-700 text-base mb-2"><strong>Proud and Positive Campaign</strong> (2024-Present): Launched the first Pride Parade with ribbon formations and candle lighting, reducing stigma. Our HIV awareness video garnered 7.9M views, growing our online platform to 50,000+ followers and boosting HIV screenings from 456 in 2024 to 540 in H1 2025.</p>
-                    <p class="text-gray-700 text-base mb-2"><strong>Lakbay Kalusugan</strong> (July 2): Free HIV and mental health education in barangays and schools, screening 78 people so far.</p>
-                    <p class="text-gray-700 text-base mb-2"><strong>Pride Parade and HOPE Ambassadors</strong> (August 12): Crowning youth as HIV advocates to inspire community action.</p>
-                    <button onclick="openModal('proud-positive-modal')" class="mt-2 px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700">Register for Events</button>
-                </div>
-
-                <!-- CLINICS -->
-                <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-4">Announcements & Clinics</h3>
-                    <p class="text-gray-700 text-base mb-2">Next Clinic: November 24, 2025, 9 AM - 12 PM</p>
-                    <p class="text-gray-700 text-base">Free HIV testing, STD panel, and gram staining available! Join our Proud and Positive events for more.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROGRAMS -->
-        <section id="programs" class="hidden">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
-                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                Our Programs
-            </h2>
-            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
-                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Proud and Positive Campaign</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Our flagship community engagement and stigma-reduction campaign. Activities include awareness videos, community events, fun runs, and youth advocacy to promote inclusive health services.</p>
-                <div class="grid md:grid-cols-3 gap-4">
-                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/1a585da53a0993b953be36aae55b238b16df60bd/Proud%20and%20Positive%201.jpg" alt="Proud and Positive 1" class="team-img" onerror="this.src='https://via.placeholder.com/240?text=Image+Not+Found';">
-                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/1a585da53a0993b953be36aae55b238b16df60bd/Proud%20and%20Positive%202.jpg" alt="Proud and Positive 2" class="team-img" onerror="this.src='https://via.placeholder.com/240?text=Image+Not+Found';">
-                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/1a585da53a0993b953be36aae55b238b16df60bd/Fun%20Run%201.jpg" alt="Proud and Positive Fun Run" class="team-img" onerror="this.src='https://via.placeholder.com/240?text=Image+Not+Found';">
-                </div>
-            </div>
-            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
-                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">Lakbay Kalusugan</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Outreach program offering free HIV testing, mental health education, and health services in barangays and schools.</p>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/1a585da53a0993b953be36aae55b238b16df60bd/Lakbay%20Kalusugan%202.jpg" alt="Lakbay Kalusugan 2" class="team-img" onerror="this.src='https://via.placeholder.com/240?text=Image+Not+Found';">
-                    <img src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/1a585da53a0993b953be36aae55b238b16df60bd/Lakbay%20Kalusugan.jpg" alt="Lakbay Kalusugan" class="team-img" onerror="this.src='https://via.placeholder.com/240?text=Image+Not+Found';">
-                </div>
-            </div>
-            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
-                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">HOPE Ambassadors 2025</h3>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Youth advocates trained to spread HIV awareness and lead community activities.</p>
-                <video controls class="w-full rounded-lg shadow-md">
-                    <source src="https://raw.githubusercontent.com/h4sccp/sccp-proudpositive.github.io/1a585da53a0993b953be36aae55b238b16df60bd/hope-ambassadors-2025-doaap64v_Z4VQEVoz.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
             </div>
         </section>
 
@@ -341,22 +340,15 @@
         <section id="directory" class="hidden">
             <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
                 <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path></svg>
-                Treatment Hubs & Partner Facilities
+                Treatment Hubs
             </h2>
-            <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">Access inclusive care at our partner hubs, aligned with the Proud and Positive mission.</p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-3">Ilocos Training and Regional Medical Center</h3>
-                    <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient/Inpatient</p>
-                    <p class="text-gray-700 text-base mb-2"><strong>Address:</strong> Parian, San Fernando City, La Union</p>
-                    <p class="text-gray-700 text-base"><strong>Contact:</strong> (072) 607-6418 / (072) 607-9912</p>
-                </div>
-                <div class="bg-blue-50 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-3">Region 1 Medical Center</h3>
-                    <p class="text-gray-700 text-base mb-2"><strong>Services:</strong> Outpatient/Inpatient</p>
-                    <p class="text-gray-700 text-base mb-2"><strong>Address:</strong> Dagupan City Hall, AB Fernandez Avenue</p>
-                    <p class="text-gray-700 text-base"><strong>Contact:</strong> Dr. Michiko Manaois 0915-9063375</p>
-                </div>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Find nearby treatment hubs for HIV care and support:</p>
+                <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2">
+                    <li><strong>San Carlos City Social Hygiene Clinic</strong> – Main Hub (This Clinic)</li>
+                    <li><strong>Negros Occidental Provincial Hospital</strong> – HIV Treatment Hub</li>
+                    <li><strong>Bacolod City Health Office</strong> – Testing & Counseling</li>
+                </ul>
             </div>
         </section>
 
@@ -364,23 +356,14 @@
         <section id="resources" class="hidden">
             <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
                 <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path></svg>
-                Important Guidelines & Resources
+                Resources
             </h2>
-            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
-                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">HIV/STI Guidelines & Information</h3>
-                <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2">
-                    <li><a href="https://www.iasociety.org/sites/default/files/2024-03/The%20HIV%20response%20in%20the%20Philippines%20in%202024-Mikhail%20Zion%20Taguegg.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">The HIV Response in the Philippines (2024)</a></li>
-                    <li><a href="https://www.ship.ph/wp-content/uploads/2019/08/IB_rHIVda.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Rules of Republic Act 11166 (rHIVda Law)</a></li>
-                    <li><a href="https://www.prepwatch.org/wp-content/uploads/2022/03/Philippines-Interim-National-PrEP-Guidelines-2021.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Philippines Interim PrEP Guidelines (2021)</a></li>
-                    <li><a href="https://www.aidsdatahub.org/sites/default/files/resource/philippine-hiv-and-aids-policy-act-2019.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Philippine HIV and AIDS Policy Act (RA 11166)</a></li>
-                    <li><a href="https://www.aidsdatahub.org/sites/default/files/resource/doh-philippines-guidelines-management-sti-pregnancy.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">DOH Guidelines for STI in Pregnancy</a></li>
-                </ul>
-            </div>
             <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
-                <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-4">TB Guidelines & Information</h3>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Download educational materials and guides:</p>
                 <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2">
-                    <li><a href="https://ntp.doh.gov.ph/download/ntp-mop-6th-edition/" target="_blank" rel.wasnoopener noreferrer" class="text-blue-600 hover:underline">National TB Program Manual (6th Edition)</a></li>
-                    <li><a href="https://ntp.doh.gov.ph/tb-algorithm/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">TB Diagnostic & Treatment Algorithm</a></li>
+                    <li><a href="#" class="text-blue-600 hover:underline">HIV Prevention Guide (PDF)</a></li>
+                    <li><a href="#" class="text-blue-600 hover:underline">PrEP Information Sheet</a></li>
+                    <li><a href="#" class="text-blue-600 hover:underline">LGBTQ+ Health Resources</a></li>
                 </ul>
             </div>
         </section>
@@ -391,8 +374,24 @@
                 <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"></path></svg>
                 Dashboard
             </h2>
-            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md text-center">
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed">Our dashboard, tracking Proud and Positive impact, is coming soon!</p>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed">Clinic statistics and updates coming soon.</p>
+            </div>
+        </section>
+
+        <!-- PROGRAMS -->
+        <section id="programs" class="hidden">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-red-800 mb-6 text-center flex items-center justify-center">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6M12 9v6"></path></svg>
+                Programs
+            </h2>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Join our ongoing programs:</p>
+                <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed space-y-2">
+                    <li><strong>Pride Parade 2026</strong> – Annual celebration of diversity</li>
+                    <li><strong>Parol ng Pag-asa</strong> – HIV awareness campaign</li>
+                    <li><strong>Free Testing Days</strong> – Every last Friday of the month</li>
+                </ul>
             </div>
         </section>
 
@@ -402,25 +401,12 @@
                 <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                 Contact Us
             </h2>
-            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md mb-6">
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Join the Proud and Positive movement or get support!</p>
-                <div class="mb-4">
-                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">Social Hygiene Clinic Contact:</h3>
-                    <p class="text-gray-700 text-base"><strong>Phone:</strong> 09276205287</p>
-                    <p class="text-gray-700 text-base"><strong>Email:</strong> <a href="mailto:chosccpsocialhygiene@gmail.com" class="text-blue-600 hover:underline">chosccpsocialhygiene@gmail.com</a></p>
-                    <p class="text-gray-700 text-base"><strong>Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
-                    <p class="text-gray-700 text-base"><strong>Address:</strong> San Carlos City Health Office, City Hall Compound</p>
-                </div>
-                <div class="mb-4">
-                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">City Health Office Contact:</h3>
-                    <p class="text-gray-700 text-base"><strong>Facebook:</strong> <a href="https://www.facebook.com/sccp.cho" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">City Health Office - SCCP</a></p>
-                    <p class="text-gray-700 text-base"><strong>Phone:</strong> <a href="tel:+639693171593" class="text-blue-600 hover:underline">0969 317 1593</a></p>
-                    <p class="text-gray-700 text-base"><strong>Email:</strong> <a href="mailto:chosccp@gmail.com" class="text-blue-600 hover:underline">chosccp@gmail.com</a></p>
-                </div>
-                <div class="mb-4">
-                    <h3 class="text-xl md:text-2xl font-semibold text-red-700 mb-2">Mental Health Support:</h3>
-                    <p class="text-gray-700 text-base"><strong>DOH-NCMH Crisis Hotline:</strong> <a href="tel:+639178998727" class="text-blue-600 hover:underline">0917-899-8727</a></p>
-                </div>
+            <div class="bg-gray-50 p-4 md:p-6 rounded-lg shadow-md">
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">Get in touch with us:</p>
+                <p class="text-gray-700"><strong>Address:</strong> San Carlos City Hall Compound, San Carlos City, Negros Occidental</p>
+                <p class="text-gray-700"><strong>Phone:</strong> (034) 312-5000</p>
+                <p class="text-gray-700"><strong>Email:</strong> socialhygiene@sancarloscity.gov.ph</p>
+                <p class="text-gray-700 mt-4">Clinic Hours: Monday–Friday, 8:00 AM – 5:00 PM</p>
             </div>
         </section>
 
@@ -434,11 +420,8 @@
                         <label for="event-name" class="block text-gray-700 text-sm font-bold mb-2">Event:</label>
                         <select id="event-name" class="shadow border rounded w-full py-2 px-3" required>
                             <option value="Pride Parade 2026">Pride Parade 2026</option>
+                            <option value="Parol ng Pag-asa">Parol ng Pag-asa</option>
                         </select>
-                    </div>
-                    <div class="mb-4">
-                        <label for="participant-name" class="block text-gray-700 text-sm font-bold mb-2">Name (Optional):</label>
-                        <input type="text" id="participant-name" class="shadow border rounded w-full py-2 px-3">
                     </div>
                     <button type="submit" class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700">Register</button>
                 </form>
@@ -453,15 +436,16 @@
             <p class="text-sm mt-2">Proud and Positive: Promoting Health, Embracing All.</p>
             <p class="text-xs text-gray-400 mt-2">
                 This site is protected by reCAPTCHA. 
-                <a href="https://policies.google.com/privacy" target="_blank" class="underline">Privacy</a> | 
-                <a href="https://policies.google.com/terms" target="_blank" class="underline">Terms</a>
+                <a href="https://policies.google.com/privacy" target="_blank" class="underline">Privacy Policy</a> and 
+                <a href="https://policies.google.com/terms" target="_blank" class="underline">Terms of Service</a> apply.
             </p>
         </div>
     </footer>
 
-    <!-- FULL SCRIPT -->
     <script>
-        const BASE_URL = "http://127.0.0.1:9000"; // Change when deployed
+        const BASE_URL = "http://127.0.0.1:9000";
+        const RATE_LIMIT = 30000;
+        const lastSubmit = { assessment: 0, appointment: 0, event: 0 };
 
         function generateCode(prefix) {
             return `${prefix}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`.toUpperCase();
@@ -469,24 +453,33 @@
 
         function getRecaptchaToken(action) {
             return new Promise(resolve => {
-                if (typeof grecaptcha === 'undefined') return resolve('mock');
-                grecaptcha.ready(() => grecaptcha.execute('6LcWxAksAAAAAKGjpjanQFZYHlGhZ_4xGnfF0eS-', { action }).then(resolve).catch(() => resolve('fallback')));
+                grecaptcha.ready(() => {
+                    grecaptcha.execute('6LcWxAksAAAAAKGjpjanQFZYHlGhZ_4xGnfF0eS-', { action })
+                        .then(resolve)
+                        .catch(() => resolve('fallback'));
+                });
             });
         }
 
         async function apiPost(path, data) {
+            const token = await getRecaptchaToken('submit');
             try {
                 const res = await fetch(`${BASE_URL}${path}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data || {})
+                    body: JSON.stringify({ ...data, token })
                 });
-                if (!res.ok) throw new Error("API error");
-                return await res.json();
-            } catch (err) {
-                console.warn("API failed, continuing offline:", err);
+                return res.ok ? await res.json() : { error: "API error" };
+            } catch {
                 return { status: "offline" };
             }
+        }
+
+        function canSubmit(type) {
+            const now = Date.now();
+            if (now - lastSubmit[type] < RATE_LIMIT) return false;
+            lastSubmit[type] = now;
+            return true;
         }
 
         function showSection(id) {
@@ -498,74 +491,57 @@
             if (link) link.classList.add('active');
         }
 
-        function openModal(id) { const m = document.getElementById(id); m.classList.add('active'); m.setAttribute('aria-hidden', 'false'); m.querySelector('.modal-content').focus(); }
-        function closeModal(id) { const m = document.getElementById(id); m.classList.remove('active'); m.setAttribute('aria-hidden', 'true'); }
+        function openModal(id) { 
+            const m = document.getElementById(id); 
+            m.classList.add('active'); 
+            m.setAttribute('aria-hidden', 'false'); 
+            m.querySelector('.modal-content').focus(); 
+        }
+        function closeModal(id) { 
+            const m = document.getElementById(id); 
+            m.classList.remove('active'); 
+            m.setAttribute('aria-hidden', 'true'); 
+        }
 
-        // INSTANT SELF-ASSESSMENT
         async function submitAssessmentForm(e) {
             e.preventDefault();
-            const risks = Array.from(document.querySelectorAll('input[name="risk-factors"]:checked')).map(c => c.value);
-            const msg = document.getElementById('assessment-message');
-            const err = document.getElementById('assessment-error');
-            err.classList.add('hidden'); msg.classList.add('hidden');
-
-            if (risks.length === 0) {
-                err.classList.remove('hidden');
-                msg.classList.remove('hidden');
-                msg.textContent = 'Please select at least one option.';
-                msg.className = 'mt-4 text-red-500 font-semibold';
-                return;
-            }
-
-            // INSTANT RESULT
-            msg.classList.remove('hidden');
-            msg.innerHTML = `
-                <strong>HIV counseling and medical consultation are recommended.</strong><br>
-                <span class="text-sm">Visit us for free, confidential care — no judgment.</span>
-            `;
-            msg.className = 'mt-4 text-red-700 font-bold leading-relaxed';
+            if (!canSubmit('assessment')) { showMsg('assessment-message', 'Wait 30 sec.', 'red'); return; }
+            const risks = Array.from(e.target.querySelectorAll('input[name="risk-factors"]:checked')).map(c => c.value);
+            if (risks.length === 0) { showMsg('assessment-message', 'Please select at least one.', 'red'); return; }
+            showMsg('assessment-message', 'Submitting...', 'gray');
+            const res = await apiPost('/api/assessments', { score: risks.length, notes: risks.join(',') });
+            showMsg('assessment-message', res.status === 'offline' ? 'Saved locally.' : 'Thank you!', 'green');
             e.target.reset();
-
-            // LOG TO BACKEND SILENTLY
-            (async () => {
-                try {
-                    const token = await getRecaptchaToken('assessment');
-                    await apiPost('/api/assessments', { score: risks.length, notes: risks.join(',') });
-                } catch {}
-            })();
         }
 
-        // APPOINTMENT
         async function submitAppointmentForm(e) {
             e.preventDefault();
+            if (!canSubmit('appointment')) { showMsg('appointment-message', 'Wait 30 sec.', 'red'); return; }
             const reason = document.getElementById('appointment-reason').value.trim();
             const date = document.getElementById('appointment-date').value;
-            const msg = document.getElementById('appointment-message');
-            const err = document.getElementById('appointment-reason-error');
-            err.classList.add('hidden'); msg.classList.add('hidden');
-            if (!reason || !date) { if (!reason) err.classList.remove('hidden'); msg.classList.remove('hidden'); msg.textContent = 'Fill reason and pick a date.'; msg.className = 'mt-4 text-red-500'; return; }
-            msg.classList.remove('hidden'); msg.textContent = 'Submitting...';
-            try {
-                const code = generateCode('SCC');
-                await apiPost('/api/appointments', { name: `Anon (${code})`, date, reason });
-                msg.innerHTML = `Success! Your code:<br><strong>${code}</strong><br>Show at clinic.`;
-                msg.className = 'mt-4 text-green-600 font-bold';
-                e.target.reset(); window.flatpickrInstance?.clear();
-            } catch { msg.textContent = 'Error. Try again.'; msg.className = 'mt-4 text-red-500'; }
+            if (!reason || !date) { showMsg('appointment-message', 'Fill all fields.', 'red'); return; }
+            showMsg('appointment-message', 'Submitting...', 'gray');
+            const code = generateCode('SCC');
+            const res = await apiPost('/api/appointments', { name: `Anon (${code})`, date, reason });
+            showMsg('appointment-message', res.status === 'offline' ? 'Saved.' : `Code: <strong>${code}</strong>`, 'green');
+            e.target.reset(); window.flatpickrInstance?.clear();
         }
 
-        // EVENT
         async function submitEventRegistration(e) {
             e.preventDefault();
-            const msg = document.getElementById('event-message');
-            msg.classList.add('hidden'); msg.textContent = 'Registering...'; msg.classList.remove('hidden');
-            try {
-                const code = generateCode('EVENT');
-                await apiPost('/api/event_registrations', {});
-                msg.innerHTML = `Registered!<br>Code: <strong>${code}</strong>`;
-                msg.className = 'mt-4 text-green-600 font-bold';
-                setTimeout(() => closeModal('proud-positive-modal'), 3000);
-            } catch { msg.textContent = 'Error.'; msg.className = 'mt-4 text-red-500'; }
+            if (!canSubmit('event')) { showMsg('event-message', 'Wait 30 sec.', 'red'); return; }
+            showMsg('event-message', 'Registering...', 'gray');
+            const code = generateCode('EVENT');
+            const res = await apiPost('/api/event_registrations', {});
+            showMsg('event-message', res.status === 'offline' ? 'Saved.' : `Code: <strong>${code}</strong>`, 'green');
+            setTimeout(() => closeModal('proud-positive-modal'), 3000);
+        }
+
+        function showMsg(id, html, color) {
+            const el = document.getElementById(id);
+            el.innerHTML = html;
+            el.className = `mt-4 text-${color}-600 font-bold text-center`;
+            el.classList.remove('hidden');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -581,8 +557,6 @@
                     }
                 });
             }
-            document.addEventListener('keydown', e => e.key === 'Escape' && document.querySelector('.modal.active') && closeModal('proud-positive-modal'));
-            document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => e.target === m && closeModal(m.id)));
         });
     </script>
 </body>
